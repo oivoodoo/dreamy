@@ -1,0 +1,9 @@
+AddHandler fastcgi-script .fcgi
+Options +ExecCGI
+
+RewriteEngine On
+RewriteBase /
+
+RewriteRule ^.+\.(jpg|jpeg|gif|png|ico|css|js|swf) $0 [L]
+RewriteRule ^(.*)$ dispatch.fcgi [QSA,L]
+

@@ -1,0 +1,13 @@
+AddHandler fastcgi-script .fcgi
+Options +ExecCGI
+
+RewriteEngine On
+RewriteBase /
+
+RewriteRule ^javascripts/tiny_mce/themes/advanced/(.*)$ - [L]
+RewriteRule ^javascripts/tiny_mce/themes/simple/(.*)$ - [L]
+RewriteRule ^javascripts/tiny_mce/plugins/(.*)$ - [L]
+
+RewriteRule ^.+\.(jpg|jpeg|gif|png|ico|css|js|swf) $0 [L]
+RewriteRule ^(.*)$ dispatch.fcgi [QSA,L]
+

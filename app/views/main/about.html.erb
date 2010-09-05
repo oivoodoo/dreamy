@@ -1,0 +1,12 @@
+<% content_for :meta do %>
+  <%= render :partial => 'templates/meta', :object => @about_page %>
+<% end %>
+
+<div id="main">
+	<div id="content">
+		<h2><%= h @about_page.title %></h2>	
+		<div>
+			<%= @about_page.body %>
+		</div>
+	</div>
+</div>

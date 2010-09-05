@@ -1,0 +1,33 @@
+
+#AddHandler cgi-script .rb
+#Options +ExecCGI
+
+AddHandler fastcgi-script .fcgi
+Options +ExecCGI
+
+#DirectoryIndex dispatch.fcgi
+
+RewriteEngine On
+
+
+RewriteRule ^(.*)$ dispatch.fcgi [QSA,L]
+
+RewriteEngine On
+RewriteBase /
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^.+\.(jpg|jpeg|gif|png|ico|css|js|swf)$ /public/images/$0 [L]
+RewriteRule ^.+\.(jpg|jpeg|gif|png|ico|css|js|swf)$ /public/stylesheets/$0 [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+#ProxyPass /images !
+#ProxyPass /stylesheets !
+#continue with other static files that should be served by apache
+
+#continue with aliases for static content
+
+#RewriteEngine On
+#RewriteCond %{DOCUMENT_ROOT}%{REQUEST_FILENAME} !-f
+#RewriteCond %{DOCUMENT_ROOT}%{REQUEST_FILENAME} !-d
+#RewriteRule ^(.*)$ balancer://korsak-dreamydays%{REQUEST_URI} [P,L,QSA]
