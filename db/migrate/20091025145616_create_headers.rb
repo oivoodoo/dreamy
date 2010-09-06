@@ -1,10 +1,10 @@
 class CreateHeaders < ActiveRecord::Migration
   def self.up
-#    create_table :headers do |t|
-#      t.text :content
-      
-#      t.timestamps
-#    end
+    create_table :headers do |t|
+      t.text :content
+     
+      t.timestamps
+    end
 
     Header.create :content => "<div>
 		<div style='float: right;'>

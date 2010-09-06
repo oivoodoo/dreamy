@@ -16,7 +16,9 @@ class House < ActiveRecord::Base
   named_scope :for_rent, lambda {|scope| {:conditions => ["house_type = 'rent' or house_type = 'all'"]}}
   named_scope :for_sale, lambda {|scope| {:conditions => ["house_type = 'sale' or house_type = 'all'"]}}
   named_scope :for_all, lambda {|scope| {:conditions => ["house_type = 'all'"]}}
-
+
+  accepts_nested_attributes_for :assets, :allow_destroy => true
+
   cattr_reader :per_page
   @@per_page = 10
 
@@ -49,29 +51,6 @@ class House < ActiveRecord::Base
     end
   end
 
-  def assets_attributes=(photos_attributes)
-    photos_attributes.each do |attributes|
-      if attributes.key? :document
-        assets.build(attributes)
-      end
-    end
-  end
-
-  def editable_assets_attributes=(photos_attributes)
-    photos_attributes.each do |attributes|
-      if attributes[:id].blank? then
-        assets.build(attributes)
-      else
-        for photo in assets
-          if photo.id == attributes[:id].to_i then
-            photo.attributes = attributes
-            break
-          end
-        end
-      end
-    end
-  end
-
   def google_markers_attributes=(google_marker_attributes)
     google_marker_attributes.each do |attributes|
       if attributes[:id].blank? then
@@ -88,7 +67,6 @@ class House < ActiveRecord::Base
   end
 
   class << self
-
     def find_by_query(query, page, house_type)
       if not query.cost.empty? and not query.location.empty? and not query.number.empty?
       then

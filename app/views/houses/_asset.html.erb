@@ -1,6 +1,9 @@
-<% fields_for "house[assets_attributes][]", asset do |photo_form| %>
-	<div class="photo_file_upload">
-    <%= photo_form.file_field :document %>&nbsp;
-    <%= photo_form.check_box :is_visible %><%= photo_form.label :is_visible, "Показывать на странице дома?" %>
-	</div>
+<p>
+<% if f.object.new_record? %>
+    <%= f.file_field :document %>&nbsp;
+    <%= f.check_box :is_visible %><%= f.label :is_visible, "Показывать на странице дома?" %>
+<% else %>
+  <%= f.object.document_file_name %>
+  <%= f.check_box :is_visible %><%= f.label :is_visible, "Показывать на странице дома?" %>&nbsp;&nbsp;
 <% end %>
+</p>

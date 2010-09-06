@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100902205148) do
+ActiveRecord::Schema.define(:version => 20100906042815) do
 
   create_table "about_pages", :force => true do |t|
     t.string   "title"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(:version => 20100902205148) do
     t.text     "meta_description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "content"
     t.text     "body"
   end
 
@@ -158,9 +159,9 @@ ActiveRecord::Schema.define(:version => 20100902205148) do
     t.string   "house_type"
     t.text     "total_price"
     t.text     "admin_comment"
-    t.integer  "group_position",     :default => 0
-    t.string   "page_title"
     t.text     "sale_bottom_text"
+    t.integer  "group_position"
+    t.string   "page_title"
   end
 
   create_table "locations", :force => true do |t|
@@ -213,8 +214,6 @@ ActiveRecord::Schema.define(:version => 20100902205148) do
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
   end
-
-  add_index "photos", ["house_id"], :name => "zz_house_id"
 
   create_table "prices", :force => true do |t|
     t.string   "title"

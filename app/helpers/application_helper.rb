@@ -44,4 +44,33 @@ module ApplicationHelper
          </script>
        )
    end  
+
+  def render_template_form(template, action_name)
+    render :partial => template, :locals => {:action_name => action_name}
+  end
+
+  def generate_html(form_builder, method, options = {})
+    options[:object] ||= form_builder.object.class.reflect_on_association(method).klass.new
+    options[:partial] ||= method.to_s.singularize
+    options[:form_builder_local] ||= :f
+
+    form_builder.fields_for(method, options[:object], :child_index => 'NEW_RECORD') do |f|
+      render(:partial => options[:partial], :locals => { options[:form_builder_local] => f })
+    end
+  end
+
+  def generate_template(form_builder, method, options = {})
+    escape_javascript generate_html(form_builder, method, options = {})
+  end
+
+  def remove_link_unless_new_record(fields, options = {})
+    out = ''
+    out << fields.hidden_field(:_delete)  unless fields.object.new_record?
+    out << link_to("удалить", "##{options[:class_name].nil? ? fields.object.class.name.underscore : options[:class_name]}", :class => 'remove')
+    out
+  end
+
+  def add_link(title, model)
+    link_to title, "##{model}", :class => "add_nested_item", :rel => model.pluralize
+  end
 end
