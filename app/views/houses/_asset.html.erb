@@ -1,9 +1,10 @@
-<p>
+<p class="asset">
 <% if f.object.new_record? %>
     <%= f.file_field :document %>&nbsp;
     <%= f.check_box :is_visible %><%= f.label :is_visible, "Показывать на странице дома?" %>
 <% else %>
   <%= f.object.document_file_name %>
-  <%= f.check_box :is_visible %><%= f.label :is_visible, "Показывать на странице дома?" %>&nbsp;&nbsp;
+  <%= f.check_box :is_visible %><%= f.label :is_visible, "Показывать на странице дома?" %>&nbsp;
+  <%= remove_link_unless_new_record(f) %>
 <% end %>
 </p>

@@ -6,7 +6,6 @@ class House < ActiveRecord::Base
 
   after_update :save_photos
   after_update :save_google_markers
-  after_update :save_assets
 
   belongs_to :house_container
 
