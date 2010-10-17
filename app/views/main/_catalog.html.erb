@@ -26,7 +26,6 @@
                 <% iterator = 0 %>
                 <% for i in 0...@houses.size %>
                     <% if @houses[i].photos.size > 0 %>
-<% logger.info "HOUSE TYPE #{house_type}" %>
                         <% value = render_big_image(@houses[i], iterator, house_type) %>
                         <% if value != -1 %>
                             <%= value %>
@@ -40,6 +39,7 @@
         </div>
         <div class="clearer">&nbsp;</div>
         <%= will_paginate @houses, :update => "content" %>
+        <div><%= page.bottom %></div>
     </div>
 <% else %>
     <div id="content">
