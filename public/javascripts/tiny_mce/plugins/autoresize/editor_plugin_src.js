@@ -1,11 +1,8 @@
 /**
- * editor_plugin_src.js
+ * $Id: editor_plugin_src.js 539 2008-01-14 19:08:58Z spocke $
  *
- * Copyright 2009, Moxiecode Systems AB
- * Released under LGPL License.
- *
- * License: http://tinymce.moxiecode.com/license
- * Contributing: http://tinymce.moxiecode.com/contributing
+ * @author Moxiecode
+ * @copyright Copyright © 2004-2008, Moxiecode Systems AB, All rights reserved.
  */
 
 (function() {
@@ -59,6 +56,16 @@
 			// Define minimum height
 			t.autoresize_min_height = ed.getElement().offsetHeight;
 
+			// Things to do when the editor is ready
+			ed.onInit.add(function(ed, l) {
+				// Show throbber until content area is resized properly
+				ed.setProgressState(true);
+				t.throbbing = true;
+
+				// Hide scrollbars
+				ed.getBody().style.overflowY = "hidden";
+			});
+
 			// Add appropriate listeners for resizing content area
 			ed.onChange.add(resize);
 			ed.onSetContent.add(resize);
@@ -66,32 +73,20 @@
 			ed.onKeyUp.add(resize);
 			ed.onPostRender.add(resize);
 
-			if (ed.getParam('autoresize_on_init', true)) {
-				// Things to do when the editor is ready
-				ed.onInit.add(function(ed, l) {
-					// Show throbber until content area is resized properly
-					ed.setProgressState(true);
-					t.throbbing = true;
+			ed.onLoadContent.add(function(ed, l) {
+				resize();
 
-					// Hide scrollbars
-					ed.getBody().style.overflowY = "hidden";
-				});
-
-				ed.onLoadContent.add(function(ed, l) {
+				// Because the content area resizes when its content CSS loads,
+				// and we can't easily add a listener to its onload event,
+				// we'll just trigger a resize after a short loading period
+				setTimeout(function() {
 					resize();
 
-					// Because the content area resizes when its content CSS loads,
-					// and we can't easily add a listener to its onload event,
-					// we'll just trigger a resize after a short loading period
-					setTimeout(function() {
-						resize();
-
-						// Disable throbber
-						ed.setProgressState(false);
-						t.throbbing = false;
-					}, 1250);
-				});
-			}
+					// Disable throbber
+					ed.setProgressState(false);
+					t.throbbing = false;
+				}, 1250);
+			});
 
 			// Register the command so that it can be invoked by using tinyMCE.activeEditor.execCommand('mceExample');
 			ed.addCommand('mceAutoResize', resize);
