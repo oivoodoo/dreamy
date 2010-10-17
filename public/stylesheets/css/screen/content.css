@@ -495,7 +495,7 @@ body {
 /* begin new styles */
 
 /* pagination */
-.pagination {text-align:center;}
+.pagination {text-align:center;margin-bottom:10px;}
 .pagination .current {padding: 2px; background-color:#e7e8e2;}
 #facebook-like {padding-left: 25px;}
 .pagination .disabled {color: #9698a1;}

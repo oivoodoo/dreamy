@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100906042815) do
+ActiveRecord::Schema.define(:version => 20101017175831) do
 
   create_table "about_pages", :force => true do |t|
     t.string   "title"
@@ -56,8 +56,8 @@ ActiveRecord::Schema.define(:version => 20100906042815) do
     t.text     "meta_description"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "content"
     t.text     "body"
+    t.text     "bottom"
   end
 
   create_table "contacts", :force => true do |t|
@@ -155,13 +155,13 @@ ActiveRecord::Schema.define(:version => 20100906042815) do
     t.integer  "number_id"
     t.string   "meta_keywords"
     t.text     "meta_description"
-    t.integer  "group_position"
     t.integer  "house_container_id"
     t.string   "house_type"
     t.text     "total_price"
     t.text     "admin_comment"
-    t.text     "sale_bottom_text"
+    t.integer  "group_position",     :default => 0
     t.string   "page_title"
+    t.text     "sale_bottom_text"
   end
 
   create_table "locations", :force => true do |t|
@@ -215,6 +215,8 @@ ActiveRecord::Schema.define(:version => 20100906042815) do
     t.datetime "photo_updated_at"
   end
 
+  add_index "photos", ["house_id"], :name => "zz_house_id"
+
   create_table "prices", :force => true do |t|
     t.string   "title"
     t.integer  "search_id"
@@ -240,6 +242,7 @@ ActiveRecord::Schema.define(:version => 20100906042815) do
     t.datetime "updated_at"
     t.text     "content"
     t.text     "body"
+    t.text     "bottom"
   end
 
   create_table "sale_searches", :force => true do |t|
