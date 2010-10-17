@@ -2,123 +2,26 @@
 
 @media all {
 
-html * {
-        font-size: 100.01%;
-}
+html * {font-size: 100.01%;}
 
-pre, tt, code {
-        font-family: "Courier New", Courier, monospace;
-}
-
-input[type='button'], input[type='submit'], input[type='text'], textarea, input[type='file'] {
-	padding: 2px;
-}
-
-ul li {
-	color: #1187FF;
-}
-
-h1, h2, h3, h4, h5, h6 {
-        font-family: 'Trebuchet MS', Verdana, Helvetica, Arial, sans-serif;
-        font-weight: bold;
-        color: #666;
-        margin: 0 0 0.25em 0;
-}
-
-h1 {
-        font-size: 26px;
-		font-style: italic;
-		color: #1187ff
-}
- /* 24px */
-h2, h2 a {
-        font-size: 20px !important;
-        color: #474747 !important;
-		font-style: italic  !important;
-		font-weight: normal  !important;
-}
-
-h3 {
-        font-size: 18px;
-		color: #37b400;
-}
-
-h4 {
-        font-size: 16px
-}
-
-h5 {
-        font-size: 14px
-}
-
-h6 {
-        font-size: 14px;
-        font-style: italic
-}
- 
-#header h1 {
-        font-size: 2.5em;
-        letter-spacing: 1px;
-        line-height: 65%;
-        color: #000;
-		font-weight: normal;
-} #header span {
-        color: #999;
-}
-
-p {
-		font-family: Georgia, Verdana, Helvetica, Arial, sans-serif;
-    font-size: 14px;
-    line-height: 1.3em;
-}
-
-div {
-	font-size: 14px;
-	font-family: Georgia, Verdana, Helvetica, Arial, sans-serif;
-}
-
-ul, ol, dl {
-}
-
-li {
-        margin-left: 1.5em;
-        line-height: 1.3em
-}
-
-dt {
-        font-weight: bold
-}
-
-dd {
-        margin: 0 0 1em 2em
-}
-
-cite, blockquote {
-        font-style: italic
-}
-
-blockquote {
-        margin: 0 0 1em 1.5em
-}
-
-strong, b {
-        font-weight: bold
-}
-
-em, i {
-        font-style: italic
-}
-
-pre, code {
-        font-family: monospace;
-        font-size: 1.1em;
-}
-
-acronym, abbr {
-        letter-spacing: .07em;
-        border-bottom: .1em dashed #c00;
-        cursor: help;
-} .note {
+pre, tt, code {font-family: "Courier New", Courier, monospace;}
+input[type='button'], input[type='submit'], input[type='text'], textarea, input[type='file'] {padding: 2px;}
+ul li {color: #1187FF;}
+h1, h2, h3, h4, h5, h6 {font-family: 'Trebuchet MS', Verdana, Helvetica, Arial, sans-serif; font-weight: bold; color: #666; margin: 0 0 0.25em 0;}
+h1 {font-size: 26px;font-style: italic;color: #1187ff}
+h2, h2 a { font-size: 20px; color: #474747; font-style: italic; font-weight: normal;}
+h3 {font-size: 18px;color: #37b400;}
+h4 { font-size: 16px}
+h5 {font-size: 14px}
+h6 {font-size: 14px;font-style: italic}
+p {font-family: Georgia, Verdana, Helvetica, Arial, sans-serif;font-size: 14px;line-height: 1.3em;}
+div {font-size: 14px;font-family: Georgia, Verdana, Helvetica, Arial, sans-serif;}
+li {margin-left: 1.5em; line-height: 1.3em}
+strong, b {font-weight: bold}
+em, i {font-style: italic}
+pre, code {font-family: monospace;font-size: 1.1em;}
+acronym, abbr {letter-spacing: .07em;border-bottom: .1em dashed #c00;cursor: help;} 
+.note {
         background: #dfd;
         padding: 1em;
         border-top: 1px #bdb dotted;
@@ -175,16 +78,6 @@ a:focus, a:hover, a:active {
         text-decoration: underline;
 }
 
-    /*
-     #main a[href^="http://www.my-domain.com"],
-     #main a[href^="https://www.my-domain.com"]
-     {
-     padding-left: 12px;
-     background-image: url('your_image.gif');
-     background-repeat: no-repeat;
-     background-position: 0 0.45em;
-     }
-     */
 table {
         width: auto;
         border-collapse: collapse;
@@ -225,17 +118,6 @@ hr {
         padding: 0 0 0.5em 0;
         border: 0;
         border-bottom: 1px #eee solid;
-} .header-phone {
-	font-size: 22px;
-	font-family: "times new roman", times, serif;
-	padding-left: 10px;
-	color: white !important;
-} .header-pre-phone {
-	color: #929292 !important
-}.header-right {
-	padding-right: 20px;
-} .header-title {
-	color: #dedede !important;
 } #nav_main {
 	padding-top: 10px;
 }.breadcrumbs, .header-title, .suggestion, .comment {
@@ -484,8 +366,7 @@ hr {
 }
 
 body {
-		background-image: url(images/background.jpg);
-		background-repeat: repeat;
+    background-color: #FFF;
     font-family: Georgia, Verdana, Helvetica, Arial, sans-serif;
     font-size: 75.00%;
     color: #444;
