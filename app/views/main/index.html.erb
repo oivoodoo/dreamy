@@ -25,7 +25,10 @@
 				<h1><%= h @main_page.title %></h1>
 				<div>
 					<%= @main_page.body %>
-				</div>
+        </div>
+        <div>
+          <iframe src="http://www.facebook.com/plugins/like.php?href=<%= request.url %>&amp;layout=standard&amp;show_faces=true&amp;width=450&amp;action=like&amp;colorscheme=light&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:80px;" allowTransparency="true"></iframe>
+        </div>
 			</div>
 		</div>
 		<div id="content-column-2">
@@ -49,7 +52,7 @@
 						<%= house_title_link(@house) %>
 					</h2>
 				<% end %>
-				<%= link_to "все предложения", :controller => :main, :action => :catalog %>
+				<%= link_to "Все виллы острова Самуи", :controller => :main, :action => :catalog %>
 			</div>
 			<div class="search-form">
 				<%= render :partial => 'main/templates/search_form' %>				
