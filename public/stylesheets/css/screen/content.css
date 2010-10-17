@@ -327,7 +327,7 @@ hr {
 } #banner-image {
 	margin-top: 33px;
 } .prices {
-	padding-left: 60px;
+	padding: 0px 25px;
 } #footer div {
 	color:#DEDEDE !important;
 	font-style: italic;
@@ -491,5 +491,17 @@ body {
     color: #444;
 }
 .sub-content-1 h1 a {font-size: 16px;}
+
+/* begin new styles */
+
+/* pagination */
+.pagination {text-align:center;}
 .pagination .current {padding: 2px; background-color:#e7e8e2;}
+#facebook-like {padding-left: 25px;}
+.pagination .disabled {color: #9698a1;}
+.pagination span.disabled.prev_page {padding-right: 2px;}
+.pagination span.disabled.next_page {padding-left: 2px;}
+.pagination a {color: #1500c5;text-decoration:underline;padding:2px;}
+
+/* end */
 }
