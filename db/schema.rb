@@ -155,12 +155,12 @@ ActiveRecord::Schema.define(:version => 20100906042815) do
     t.integer  "number_id"
     t.string   "meta_keywords"
     t.text     "meta_description"
+    t.integer  "group_position"
     t.integer  "house_container_id"
     t.string   "house_type"
     t.text     "total_price"
     t.text     "admin_comment"
     t.text     "sale_bottom_text"
-    t.integer  "group_position"
     t.string   "page_title"
   end
 

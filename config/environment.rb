@@ -14,7 +14,7 @@ end
 
 require "will_paginate"
 
-WillPaginate::ViewHelpers.pagination_options[:prev_label] = '<< Предыдущая'
-WillPaginate::ViewHelpers.pagination_options[:next_label] = 'Следующая >>'
+WillPaginate::ViewHelpers.pagination_options[:prev_label] = 'предыдущая'
+WillPaginate::ViewHelpers.pagination_options[:next_label] = 'следующая'
 WillPaginate::ViewHelpers.pagination_options[:inner_window] = 50
 WillPaginate::ViewHelpers.pagination_options[:outer_window] = 50

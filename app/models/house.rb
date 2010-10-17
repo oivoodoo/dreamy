@@ -19,7 +19,7 @@ class House < ActiveRecord::Base
   accepts_nested_attributes_for :assets, :allow_destroy => true
 
   cattr_reader :per_page
-  @@per_page = 10
+  @@per_page = 20
 
   def visible_assets
     a = []
