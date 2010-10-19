@@ -15,7 +15,7 @@ class MainController < ApplicationController
   end
 
   def contacts
-    @current_menu = 5
+    @current_menu = 6
     @contacts_page = ContactsPage.find(:first)
     @title = @contacts_page.title
   end
@@ -76,19 +76,6 @@ class MainController < ApplicationController
     @current_menu = 1
   end
 
-  def show_google
-    @house = House.find(params[:id])
-    @current_menu = 1
-
-    if @house.google_markers.size > 0 then
-      @map = GMap.new("house_map_div")
-      @map.control_init(:large_map => true,:map_type => true)
-      @map.center_zoom_init([@house.google_markers[0].x,@house.google_markers[0].y],12)
-      @map.overlay_init GMarker.new([@house.google_markers[0].x,@house.google_markers[0].y],:title => @house.google_markers[0].title)
-      @map.record_init @map.add_overlay(GMarker.new([@house.google_markers[0].x,@house.google_markers[0].y],:title => @house.google_markers[0].title))
-     end
-  end
-
   def show_article
     @article = Article.find(params[:id])
     @title = @article.title unless @article.title.nil?
@@ -99,6 +86,19 @@ class MainController < ApplicationController
     contact.save
     OrderMailer.deliver_order_notification(params[:contacts])
     redirect_to :action => "contacts"
+  end
+
+  def phone_contacts
+    @current_menu = 6
+    @contacts_page = PhoneContactsPage.find(:first)
+    @title = @contacts_page.title
+  end
+
+  def send_phone_contacts
+    contact = PhoneContact.new(params[:phone_contacts])
+    contact.save
+    OrderMailer.deliver_phone_contact_notification(params[:phone_contacts])
+    redirect_to '/'
   end
 
   protected

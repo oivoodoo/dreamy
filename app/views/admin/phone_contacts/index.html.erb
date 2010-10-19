@@ -1,0 +1,23 @@
+<% content_for :top_menu do %>
+  <%= link_to "Назад", '/admin' %>
+<% end %>
+
+<div>
+  <table>
+    <tr>
+      <td>Имя</td>
+      <td>Телефон</td>
+      <td>Время</td>
+      <td></td>
+    </tr> 
+    <% @contacts.each do |c| %>
+      <tr>
+        <td><%= c.username %></td>
+        <td><%= c.phone %></td>
+        <td><%= c.time.strftime("%H:%M %d/%m/%Y") %>
+        <td><%= link_to 'Удалить', admin_phone_contact_path(c), :confirm => 'Вы действительно хотите удалить?', :method => :delete %></td>
+      </tr>	
+    <% end %>
+  </table>
+  <%= will_paginate(@contacts) %>
+</div>

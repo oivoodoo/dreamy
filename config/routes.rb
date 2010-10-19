@@ -16,6 +16,7 @@
 
     map.namespace :admin do |admin|
 	    admin.resources :contacts, :only => [:index, :destroy]
+	    admin.resources :phone_contacts, :only => [:index, :destroy]
     end
 
     map.connect '/users/logout', :controller => "users", :action => "logout"
@@ -35,5 +36,6 @@
     map.catalog '/catalog', :controller => "main", :action => "catalog"
     map.contacts '/contacts', :controller => "main", :action => "contacts"
     map.send_contacts '/send_contacts', :controller => "main", :action => "send_contacts", :conditions => {:method => :post}
+    map.send_phone_contacts '/send_phone_contacts', :controller => "main", :action => "send_phone_contacts", :conditions => {:method => :post}
 end
 

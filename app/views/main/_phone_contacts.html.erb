@@ -1,0 +1,18 @@
+<% content_for :head do %>
+  <%= stylesheet_link_tag 'formtastic', 'formtastic_changes', 'contacts', 'phone_contacts', :cache => "fc.cache" %>
+<% end %>
+
+<% semantic_form_for :phone_contacts, :url => "/send_phone_contacts" do |form| %>
+
+  <% form.inputs do %>
+    <%= form.input :username, :label => "Ваше имя", :required => true, :input_html => {:size => 10} %>
+    <%= form.input :phone, :label => "Ваш телефон", :required => true, :input_html => {:size => 10} %>
+    <%= form.input :time, :label => "Удобное время звонка по Москве", :required => true, :as => :datetime %>
+  <% end %>
+
+  <% form.buttons do %>
+    <%= form.commit_button "Отправить" %>
+  <% end %>
+
+<% end %>
+
