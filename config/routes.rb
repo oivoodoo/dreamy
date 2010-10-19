@@ -37,5 +37,6 @@
     map.contacts '/contacts', :controller => "main", :action => "contacts"
     map.send_contacts '/send_contacts', :controller => "main", :action => "send_contacts", :conditions => {:method => :post}
     map.send_phone_contacts '/send_phone_contacts', :controller => "main", :action => "send_phone_contacts", :conditions => {:method => :post}
+    map.search '/search', :controller => "main", :action => "search"
 end
 

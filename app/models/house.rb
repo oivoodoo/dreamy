@@ -1,20 +1,18 @@
 class House < ActiveRecord::Base
-  has_many :google_markers
   has_many :photos
   has_one :price
   has_many :assets
 
   after_update :save_photos
-  after_update :save_google_markers
 
   belongs_to :house_container
 
-  default_scope :house_type => "all", :order => "group_position"
+  default_scope :order => "houses.group_position"
   acts_as_list :scope => :house_container
 
-  named_scope :for_rent, lambda {|scope| {:conditions => ["house_type = 'rent' or house_type = 'all'"]}}
-  named_scope :for_sale, lambda {|scope| {:conditions => ["house_type = 'sale' or house_type = 'all'"]}}
-  named_scope :for_all, lambda {|scope| {:conditions => ["house_type = 'all'"]}}
+  named_scope :for_rent, lambda {|scope| {:conditions => ["(houses.house_type = 'rent' or houses.house_type = 'all')"]}}
+  named_scope :for_sale, lambda {|scope| {:conditions => ["(houses.house_type = 'sale' or houses.house_type = 'all')"]}}
+  named_scope :for_all, lambda {|scope| {:conditions => ["(houses.house_type = 'all')"]}}
 
   accepts_nested_attributes_for :assets, :allow_destroy => true
 
@@ -50,22 +48,7 @@ class House < ActiveRecord::Base
     end
   end
 
-  def google_markers_attributes=(google_marker_attributes)
-    google_marker_attributes.each do |attributes|
-      if attributes[:id].blank? then
-        google_markers.build(attributes)
-      else
-        for marker in google_markers
-          if marker.id == attributes[:id].to_i then
-            marker.attributes = attributes
-            break
-          end
-        end
-      end
-    end
-  end
-
-  class << self
+ class << self
     def find_by_query(query, page, house_type)
       if not query.cost.empty? and not query.location.empty? and not query.number.empty?
       then
@@ -149,12 +132,6 @@ class House < ActiveRecord::Base
       else
         photo.save(false)
       end
-    end
-  end
-
-  def save_google_markers
-    google_markers.each do |marker|
-      marker.save(false)
     end
   end
 end

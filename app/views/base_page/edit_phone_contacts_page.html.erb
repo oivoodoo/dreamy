@@ -1,8 +1,8 @@
 <%= render :partial => "base_page/templates/top_menu" %>
 
 <h1>Редактировать контакты.</h1>
-<% form_for(@contacts_page, :url => {:action => :update_contacts_page, :id => @contacts_page.id}) do |f| %>
-  <%= render :partial => "base_page/form", :locals => {:f => f, :page_name => :contacts_page, :page_action => :contacts } %>
+<% form_for(@phone_contacts_page, :url => {:action => :update_phone_contacts_page, :id => @phone_contacts_page.id}) do |f| %>
+  <%= render :partial => "base_page/form", :locals => {:f => f, :page_name => :phone_contacts_page, :page_action => :phone_contacts } %>
   <%= submit_tag("Обновить") %>
 <% end %>
 

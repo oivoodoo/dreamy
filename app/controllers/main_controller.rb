@@ -103,6 +103,10 @@ class MainController < ApplicationController
     redirect_to :action => "phone_contacts"
   end
 
+  def search
+    @houses = House.title_like_or_bottom_text_like_or_comment_like_or_sale_bottom_text_like_or_catalog_title_like(params[:query])
+  end
+
   protected
     def prepare_catalog_page
       @current_menu = 1
