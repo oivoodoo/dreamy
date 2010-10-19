@@ -3,18 +3,15 @@
 <% end %>
 
 <% content_for :head do %>
-	<%= javascript_include_tag 'jquery' %>
-	<%= javascript_include_tag 'jquery.preload' %>
+  <%= javascript_include_tag 'jquery', 'jquery.preload', :cache => "hi.cache" %>
 	
 	<script type="text/javascript">
-		function initialize()
-		{
-			$.preload('#image-container img', {
+    $(document).ready(function(){
+      $.preload('#image-container img', {
 				placeholder:"<%= image_path('big_missing.gif') %>",
 				notFound:"<%= image_path('big_missing.gif') %>"
 			});
-		}
-		$(document).ready(initialize);
+    });
 	</script>
 <% end %>
 
@@ -30,18 +27,18 @@
 		</div>
 		<div id="content-column-2">
 			<% if not @main_photo.nil? then %>
-			<div id="big-image">
-				<% shadow_frame do %>
-					<div id="image-container" style="width: 405px; height: 307px;">
-						<center>
-							<% if not @main_photo.nil? then %>
-								<%= image_tag @main_photo.photo.url(:medium) %>
-							<% end %>
-						</center>
-					</div>
-				<% end %>
-			</div>
-			<div class="clearer" style="height: 1px;">&nbsp</div>
+        <div id="big-image">
+          <% shadow_frame do %>
+            <div id="image-container">
+              <center>
+                <% if not @main_photo.nil? then %>
+                  <%= image_tag @main_photo.photo.url(:medium) %>
+                <% end %>
+              </center>
+            </div>
+          <% end %>
+        </div>
+        <div class="clearer">&nbsp;</div>
 			<% end %>
 			<div class="pre-search">
 				<% if not @house.nil? then %>

@@ -1,12 +1,19 @@
 <div id="header">
-  <div>
-    <div class="search">
-    </div>
-    <div> 
-    </div>
-    <div>
-      <%= link_to "#{image_tag("logo.png")}", :controller => :main, :action => :index %>
-    </div>
+  <div class="search">
+    <h3>Все о Самуи</h3>
+    <% form_tag '/search' do %>
+      <%= text_field_tag :query, "поиск", {:onclick => "if ($(this).attr('value') == 'поиск') $(this).attr('value', '');"} %>
+      <%= image_submit_tag 'search3.png' %>
+      <div class="clearer">&nbsp;</div>
+    <% end %>
+    <h4><%= link_to "#{image_tag('english.gif')}English", "/" %></h4>
+  </div>
+  <div class="info"> 
+    <h3>+66 843 085 889 - Самуи</h3>
+    <h4><%= link_to "Услуга <b>Мы сами перезвоним</b>!", '/' %></h4>
+  </div>
+  <div id="logo">
+    <%= link_to "#{image_tag("logo.png")}", :controller => :main, :action => :index %>
   </div>
   <div class="clearer">&nbsp;</div>
 </div>

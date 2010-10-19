@@ -4,7 +4,7 @@
   #page {width: 1000px;}
   #page_margins {text-align: left;max-width:980px;min-width:980px;}
 
-  #header {color: #000;padding: 25px 2em 1em 20px;margin-bottom: 10px;} 
+  #header {color: #000;padding: 25px 2em 0px 20px;margin-bottom: 10px;} 
   #main { background: #fff; padding: 10px 10px;} 
   #footer { color: #666; padding: 15px; padding-top: 40px; padding-bottom: 15px; }
 

@@ -9,7 +9,8 @@ ul li {color: #1187FF;}
 h1, h2, h3, h4, h5, h6 {font-family: 'Trebuchet MS', Verdana, Helvetica, Arial, sans-serif; font-weight: bold; color: #666; margin: 0 0 0.25em 0;}
 h1 {font-size: 26px;font-style: italic;color: #1187ff}
 h2, h2 a { font-size: 20px; color: #474747; font-style: italic; font-weight: normal;}
-h3 {font-size: 18px;color: #37b400;}
+h3 {font-size:18px;color:#929292;font-weight:normal;letter-spacing:1px;}
+h4 {font-weight: normal;}
 p {font-family: Georgia, Verdana, Helvetica, Arial, sans-serif;font-size: 14px;line-height: 1.3em;}
 div {font-size: 14px;font-family: Georgia, Verdana, Helvetica, Arial, sans-serif;}
 li {margin-left: 1.5em; line-height: 1.3em}
@@ -41,7 +42,6 @@ hr {color: #fff;background: transparent;margin: 0 0 0.5em 0;padding: 0 0 0.5em 0
 #small-big-image {float:right;margin-right: 30px;margin-top: 10px;}
 #small-big-image span {margin-right: 4px;} 
 #small-big-image, .pre-search {border-bottom: 1px solid #999999;padding-bottom: 25px;} 
-.pre-search {padding-left: 25px;} 
 
 .no-margin {margin: 0px !important;} 
 .no-border {border: 0;}
@@ -66,8 +66,8 @@ hr {color: #fff;background: transparent;margin: 0 0 0.5em 0;padding: 0 0 0.5em 0
 .footer-right p { text-align: right !important; margin: 0 !important; }
 
 .services-text {color: #999999 !important;font-size: 18px !important;font-weight: normal;}
-.pre-search a, .pre-search a:focus, .pre-search a:hover, .pre-search a:active {font-size: 14px;text-decoration: none;} 
-.pre-search {margin-bottom: 20px;}
+.pre-search {margin-bottom: 20px;padding-left: 25px;}
+.pre-search h2 a {color:#474747;font-size:20px;font-style:italic;font-weight:normal;}
 .search-form {border-bottom:1px solid #999999;margin-bottom: 25px;} 
 .search-form, .right-bottom-content {padding-left: 25px;} 
 .search-form p {font-style: italic;margin-bottom: 8px;} 
@@ -119,4 +119,14 @@ body {background-color: #FFF;font-family: Georgia, Verdana, Helvetica, Arial, sa
 .pagination a {color: #1500c5;text-decoration:underline;padding:2px;}
 
 /* end */
+
+#image-container {width: 405px; height: 307px;}
+
+#header .search {width: 140px;float:left;}
+#header .search input[type='text'] {width:70px;height: 14px;font-size:10px;padding:1px;float:left;border: 1px solid #ebe4e4;text-align:right;color:#464646;font-style:italic;margin-right:2px;}
+#header .search input[type='image'] {width:21px;height:18px;float:left;}
+#header .search h4 img {margin-right:3px;padding-top:6px;}
+#header #logo {float:left;margin-left:150px;}
+#header .info {float:right;text-align:right;}
+#header .info a {text-decoration:underline;font-weight:normal;font-size:14px;}
 }
