@@ -4,11 +4,14 @@
 
 <div id="main">
 	<div id="content">
+    <div class="notification">
+      <%= flash[:success] %>
+    </div>
 		<h2><%= h @contacts_page.title %></h2>
 		<div id="contacts">
 		  <%= render :partial => "contacts" %>
 		</div>
-<br />
+    <br />
 		<div>
 			<%= @contacts_page.body %>
 		</div>

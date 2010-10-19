@@ -85,6 +85,7 @@ class MainController < ApplicationController
     contact = Contact.new(params[:contacts])
     contact.save
     OrderMailer.deliver_order_notification(params[:contacts])
+    flash[:success] = "Сообщение успешно отправлено."
     redirect_to :action => "contacts"
   end
 
@@ -98,7 +99,8 @@ class MainController < ApplicationController
     contact = PhoneContact.new(params[:phone_contacts])
     contact.save
     OrderMailer.deliver_phone_contact_notification(params[:phone_contacts])
-    redirect_to '/'
+    flash[:success] = "Сообщение успешно отправлено."
+    redirect_to :action => "phone_contacts"
   end
 
   protected

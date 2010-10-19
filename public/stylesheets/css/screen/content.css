@@ -129,4 +129,6 @@ body {background-color: #FFF;font-family: Georgia, Verdana, Helvetica, Arial, sa
 #header #logo {float:left;margin-left:150px;}
 #header .info {float:right;text-align:right;}
 #header .info a {text-decoration:underline;font-weight:normal;font-size:14px;}
+
+.notification {color:red;padding:10px 0px;}
 }
