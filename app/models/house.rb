@@ -16,6 +16,8 @@ class House < ActiveRecord::Base
 
   accepts_nested_attributes_for :assets, :allow_destroy => true
 
+  attr_accessor :house_type
+
   cattr_reader :per_page
   @@per_page = 20
 
@@ -49,38 +51,14 @@ class House < ActiveRecord::Base
   end
 
  class << self
-    def find_by_query(query, page, house_type)
-      if not query.cost.empty? and not query.location.empty? and not query.number.empty?
-      then
-        House.paginate :per_page => self.per_page, :page => page,
-          :conditions => ["price_id = ? and location_id = ? and number_id = ? and is_visible = \"1\" and #{house_type}",
-                            query.cost, query.location, query.number], :order => "group_position"
-      elsif not query.cost.empty? and not query.location.empty? and query.number.empty?
-        House.paginate :per_page => self.per_page, :page => page,
-          :conditions => ["price_id = ? and location_id = ? and is_visible = \"1\" and #{house_type}",
-            query.cost, query.location], :order => "group_position"
-      elsif not query.cost.empty? and query.location.empty? and not query.number.empty?
-        House.paginate :per_page => self.per_page, :page => page,
-          :conditions => ["price_id = ? and number_id = ? and is_visible = \"1\" and #{house_type}",
-            query.cost, query.number], :order => "group_position"
-      elsif query.cost.empty? and not query.location.empty? and not query.number.empty?
-        House.paginate  :per_page => self.per_page, :page => page,
-          :conditions => ["location_id = ? and number_id = ? and is_visible = \"1\" and #{house_type}",
-            query.location, query.number], :order => "group_position"
-      elsif query.cost.empty? and query.location.empty? and not query.number.empty?
-        House.paginate  :per_page => self.per_page, :page => page,
-          :conditions => ["number_id = ? and is_visible = \"1\" and #{house_type}", query.number], :order => "group_position"
-      elsif not query.cost.empty? and query.location.empty? and query.number.empty?
-        House.paginate  :per_page => self.per_page, :page => page,
-          :conditions => ["price_id = ? and is_visible = \"1\" and #{house_type}", query.cost], :order => "group_position"
-      elsif query.cost.empty? and not query.location.empty? and query.number.empty?
-        House.paginate :per_page => self.per_page, :page => page,
-          :conditions => ["location_id = ? and is_visible = \"1\" and #{house_type}", query.location], :order => "group_position"
-      else
-        House.paginate  :per_page => self.per_page, :page => page,
-          :conditions => ["is_visible = \"1\" and #{house_type}"], :order => "group_position"
-      end
-    end
+    def find_by_query(query, page, house_types)
+      House.house_type_equals(house_types).
+            price_id_like(query.cost).
+            location_id_like(query.location).
+            number_id_like(query.number).
+            is_visible_eq(true).
+            ascend_by_group_position
+   end
 
     def find_all_with_paginate(page, house_type)
       House.paginate  :per_page => self.per_page, :page => page, :conditions => ["is_visible = ? and #{house_type}", "1"], :order => "group_position"

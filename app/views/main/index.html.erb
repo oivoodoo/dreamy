@@ -3,8 +3,6 @@
 <% end %>
 
 <% content_for :head do %>
-  <%= javascript_include_tag 'jquery', 'jquery.preload', :cache => "hi.cache" %>
-	
 	<script type="text/javascript">
     $(document).ready(function(){
       $.preload('#image-container img', {

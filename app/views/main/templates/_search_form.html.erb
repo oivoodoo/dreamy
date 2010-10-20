@@ -1,4 +1,4 @@
-<% form_for :query, @query, :url => { :action => :catalog }, :id => "main_form" do |f| %>
+<% form_for :query, @query, :url => { :action => :catalog }, :html => {:id => "main_form", :method => :get} do |f| %>
 	<p>Поиск по каталогу</p>
 	<div class="search-controls">
 		<table>

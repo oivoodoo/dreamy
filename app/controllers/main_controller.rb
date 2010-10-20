@@ -39,37 +39,16 @@ class MainController < ApplicationController
 
   def catalog
     @current_menu = 1
-    if not params[:query].nil? then
-      @query = Query.new(params[:query])
-      @houses = House.find_by_query(@query, params[:page], "(house_type = 'rent' or house_type = 'all')")
-      session[:query] = params[:query]
-    else
-      if session[:query].nil? 
-      @houses = House.find_all_with_paginate(params[:page], "(house_type = 'rent' or house_type = 'all')")
-      else 
-       @query = Query.new(session[:query])
-       @houses = House.find_by_query(@query, params[:page], "(house_type = 'rent' or house_type = 'all')")
-      end 
-    end
+    get_houses(["rent", "all"])
     @title = @catalog_page.title
   end
 
   def sale_catalog
-    if not params[:query].nil? then
-      @query = Query.new(params[:query])
-      @houses = House.find_by_query(@query, params[:page], "(house_type = 'sale' or house_type = 'all')")
-      session[:query] = params[:query]
-    else
-      if session[:query].nil?
-        @houses = House.find_all_with_paginate(params[:page], "(house_type = 'sale' or house_type = 'all')")
-      else
-       @query = Query.new(session[:query])
-       @houses = House.find_by_query(@query, params[:page], "(house_type = 'sale' or house_type = 'all')")
-      end
-    end
+    @current_menu = 3
+    get_houses(["sale", "all"])
     @title = @sale_page.title
   end
-
+ 
   def show_house
     @house = House.find(params[:id])
     @menus = HouseMenu.find(:all, :order => "position")
@@ -121,5 +100,20 @@ class MainController < ApplicationController
     def get_sale_search
       @sale_search = Search.first
     end
+
+    def get_houses(house_types)
+      if not params[:query].nil? then
+        @query = Query.new(params[:query])
+        @houses = House.find_by_query(@query, params[:page], house_types)
+      else
+        if params[:query].nil?
+          @houses = House.find_all_with_paginate(params[:page], "(house_type = '#{house_types[0]}' or house_type = '#{house_types[1]}')")
+        else
+          @query = Query.new(params[:query])
+          @houses = House.find_by_query(@query, params[:page], house_types)
+        end
+      end
+    end
+
 end
 

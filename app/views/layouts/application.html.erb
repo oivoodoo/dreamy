@@ -11,6 +11,7 @@
 <!--[if lte IE 7]>
 <%= stylesheet_link_tag 'css/patches/patch_main' %>
 <![endif]-->
+<%= javascript_include_tag 'jquery', 'jquery.preload', :cache => "hi.cache" %>
 <%= yield :head %>
 </head>
 <body>
