@@ -48,6 +48,5 @@ after :deploy, "deploy:restart"
 after :deploy, "configuration:create_links"
 #after :deploy, "configuration:remove_assets"
 #after :deploy, "configuration:create_assets"
-after :deploy, "deploy:create"
 after :deploy, "deploy:migrate"
 
