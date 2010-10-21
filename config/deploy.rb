@@ -24,6 +24,9 @@ namespace :deploy do
     desc "#{t} task is a no-op with mod_rails"
     task t, :roles => :app do ; end
   end
+  task :create do
+    run "cd #{current_path}; /var/lib/gems/1.8/bin/rake db:create RAILS_ENV=#{stage}"
+  end
   task :migrate do
     run "cd #{current_path}; /var/lib/gems/1.8/bin/rake db:migrate RAILS_ENV=#{stage}"
   end
@@ -45,5 +48,6 @@ after :deploy, "deploy:restart"
 after :deploy, "configuration:create_links"
 #after :deploy, "configuration:remove_assets"
 #after :deploy, "configuration:create_assets"
+after :deploy, "deploy:create"
 after :deploy, "deploy:migrate"
 
