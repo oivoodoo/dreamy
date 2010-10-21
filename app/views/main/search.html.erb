@@ -1,5 +1,14 @@
 <div id="search-container">
-  <ul>
-    <%= render :partial => "search", :collection => @houses %>
-  </ul>
+  <% if @houses.size > 0 %>
+    <p>Дома:</p>
+    <ul>
+      <%= render :partial => "search", :collection => @houses %>
+    </ul>
+  <% end %>
+  <% if @articles.size > 0 %>
+    <p>Статьи:</p>
+    <ul>
+      <%= render :partial => "asearch", :collection => @articles %>
+    </ul>
+  <% end %>
 </div>

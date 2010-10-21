@@ -1,3 +1,3 @@
 <li>
-  <%= link_to search.title, :controller => :main, :action => :show_house, :id => search.id, :house_type => search.house_type %>
+  <%= link_to "#{image_tag(search.thumb_photo)} - #{search.title}", :controller => :main, :action => :show_house, :id => search.id, :house_type => search.house_type %>
 </li>

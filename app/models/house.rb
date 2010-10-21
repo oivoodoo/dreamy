@@ -21,6 +21,14 @@ class House < ActiveRecord::Base
   cattr_reader :per_page
   @@per_page = 20
 
+  def thumb_photo
+    unless self.photos.first.nil?
+      return self.photos.first.photo.url(:thumb)
+    else
+      return "None"
+    end
+  end
+
   def visible_assets
     a = []
     assets.each{|r|
