@@ -31,7 +31,7 @@ module ApplicationHelper
     "<a href=\"#{url_for(:controller => :main, :action => :show_house, :id => house.id)}\">
       #{house_title(house)}<span style=\"color: #999999; \">&#187</span></a>"
   end
-
+  
   def google_analytics(code)
      %(
          <script type='text/javascript'>

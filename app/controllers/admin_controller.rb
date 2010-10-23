@@ -3,7 +3,7 @@ module Admin ; end
 class AdminController < ApplicationController
   before_filter :authenticate, :except => %w(login new_session)
   
-  layout("admin", conditions = {}, auto = false)
+  layout "admin"
 
   def index
     @search = Search.first

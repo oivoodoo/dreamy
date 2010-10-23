@@ -10,3 +10,5 @@ public/system/*
 vendor/rails
 *.swp
 *.swo
+.idea/*
+
