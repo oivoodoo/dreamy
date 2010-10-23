@@ -3,8 +3,6 @@ class House < ActiveRecord::Base
   has_one :price
   has_many :assets
 
-  after_update :save_photos
-
   belongs_to :house_container
 
   default_scope :order => "houses.group_position"
@@ -14,9 +12,8 @@ class House < ActiveRecord::Base
   named_scope :for_sale, lambda {|scope| {:conditions => ["(houses.house_type = 'sale' or houses.house_type = 'all')"]}}
   named_scope :for_all, lambda {|scope| {:conditions => ["(houses.house_type = 'all')"]}}
 
+  accepts_nested_attributes_for :photos, :allow_destroy => true
   accepts_nested_attributes_for :assets, :allow_destroy => true
-
-  attr_accessor :house_type
 
   cattr_reader :per_page
   @@per_page = 20
@@ -37,28 +34,7 @@ class House < ActiveRecord::Base
     a
   end
 
-  def photos_attributes=(photos_attributes)
-    photos_attributes.each do |attributes|
-      photos.build(attributes)
-    end
-  end
-
-  def editable_photos_attributes=(photos_attributes)
-    photos_attributes.each do |attributes|
-      if attributes[:id].blank? then
-        photos.build(attributes)
-      else
-        for photo in photos
-          if photo.id == attributes[:id].to_i then
-            photo.attributes = attributes
-            break
-          end
-        end
-      end
-    end
-  end
-
- class << self
+  class << self
     def find_by_query(query, page, house_types)
       House.house_type_equals(house_types).
             price_id_like(query.cost).
@@ -97,28 +73,6 @@ class House < ActiveRecord::Base
       "all" == param
     end
 
-  end
-
-  def save_photos
-    photos.each do |photo|
-      logger.error("Is Photo Destroy? - #{photo.should_destroy?}")
-      if photo.should_destroy? then
-        photo.destroy
-      else
-        photo.save(false)
-      end
-    end
-  end
-
-  def save_assets
-    assets.each do |photo|
-      logger.error("Is Photo Destroy? - #{photo.should_destroy?}")
-      if photo.should_destroy? then
-        photo.destroy
-      else
-        photo.save(false)
-      end
-    end
   end
 end
 
