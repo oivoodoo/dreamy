@@ -7,8 +7,10 @@ class UsersController < AdminController
   end
 
   def logout
+    session[:user_id] = nil
+    @current_user = nil
     session[:user] = nil
-    redirect_to :controller => :main, :action => :index
+    redirect_to '/'
   end
   
   def change_password

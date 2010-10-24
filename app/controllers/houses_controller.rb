@@ -1,7 +1,12 @@
+require 'fastercsv'
+
 class HousesController < AdminController
   layout "admin"
   uses_tiny_mce(:options => AppConfig.default_mce_options, :only => [:new, :edit])
   skip_before_filter :verify_authenticity_token, :only => [:update_positions, :update_container]
+
+  include ActionView::Helpers::SanitizeHelper
+  include ActionView::Helpers::TextHelper
 
   def index
   end
@@ -21,6 +26,40 @@ class HousesController < AdminController
 
   def new
     @house = House.new
+  end
+
+  def export
+    @houses = House.all
+
+    respond_to do |format|
+      format.html
+      format.xml {render :layout => false}
+      format.rss {render :layout => false}
+      format.csv do
+        csv_string = FasterCSV.generate do |csv|
+          csv << ["Title", "Text", "Comment", "Bottom Text", "Price", "Location", "Number of rooms"]
+
+          @houses.each do |h|
+            location = h.location.title unless h.location.nil?
+            price = h.price.title unless h.price.nil?
+            number = h.number.title unless h.number.nil?
+
+            csv << [h.title, 
+              sanitize(h.text), 
+              sanitize(h.comment),
+              sanitize(h.bottom_text),
+              price, 
+              location, 
+              number]
+          end
+        end
+
+        filename = "export.csv"
+        send_data(csv_string,
+          :type => 'text/csv; charset=utf-8; header=present',
+          :filename => filename)    
+      end
+    end
   end
 
   def create

@@ -7,7 +7,6 @@ class AdminController < ApplicationController
 
   def index
     @search = Search.first
-    @sale_search = SaleSearch.first
   end
 
   def login 

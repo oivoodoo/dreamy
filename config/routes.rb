@@ -8,7 +8,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.index_rent '/h/index_rent', :controller => "houses", :action => "index_rent"
   map.index_sale '/h/index_sale', :controller => "houses", :action => "index_sale"
-  map.resources :houses, :member => {:update_positions => :post, :update_container => :post, :index_rent => :get, :index_sale => :get}
+  map.resources :houses, :member => {:update_positions => :post, :update_container => :post, :index_rent => :get, :index_sale => :get, :export => :get}
 
   map.resources :searches
   map.resources :sale_searches
@@ -38,4 +38,5 @@ ActionController::Routing::Routes.draw do |map|
   map.send_contacts '/send_contacts', :controller => "main", :action => "send_contacts", :conditions => {:method => :post}
   map.send_phone_contacts '/send_phone_contacts', :controller => "main", :action => "send_phone_contacts", :conditions => {:method => :post}
   map.search '/search', :controller => "main", :action => "search"
+  map.export_rss '/export.:format', :controller => "houses", :action => "export"
 end
