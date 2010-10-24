@@ -5,7 +5,7 @@
 html * {font-size: 100.01%;}
 
 input[type='submit'], input[type='text'], textarea {padding: 2px;}
-ul {margin:0;padding:0;list-style:none;margin-bottom:20px;}
+ul {margin:0;padding:0;list-style-type:disk;margin-bottom:20px;}
 ul li {color: #1187FF;margin:0;padding:0;padding-bottom:5px;}
 h1, h2, h3, h4, h5, h6 {font-family: 'Trebuchet MS', Verdana, Helvetica, Arial, sans-serif; font-weight: bold; color: #666; margin: 0 0 0.25em 0;}
 h1 {font-size: 26px;font-style: italic;color: #1187ff}
@@ -132,4 +132,7 @@ body {background-color: #FFF;font-family: Georgia, Verdana, Helvetica, Arial, sa
 #header .info a {text-decoration:underline;font-weight:normal;font-size:14px;}
 
 .notification {color:red;padding:10px 0px;}
+
+#items li {margin-left: 1.5em;}
+#content ul {margin: 0px 0px 1em 1em;}
 }

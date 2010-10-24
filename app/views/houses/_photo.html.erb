@@ -3,7 +3,7 @@
     <%= f.file_field :photo %>
     <%= link_to_function "Удалить", "this.up('.photo').remove()" %>
   <% else %>
-    <%= image_tag(photo.photo.url(:thumb)) %>
+    <%= image_tag(f.object.photo.url(:thumb)) %>
     <%= remove_link_unless_new_record(f) %>
   <% end %>
 </p>

@@ -7,46 +7,46 @@
 <% end %>
 
 <% form_for (@search) do |f| %>
+
+  <%= javascript_include_tag 'forms', 'delegate' %>
+  <script type="text/javascript">
+    //<![CDATA[
+      var location='<%= generate_template(f, :locations) %>';
+      var price='<%= generate_template(f, :prices) %>';
+      var number='<%= generate_template(f, :numbers) %>';
+    //]]>
+  </script>
+
 	<h2>Расположение</h2>
-	<table>
-	<tr>
-	  <td>
-	    <div id="locations">
-		    <%= render :partial => "location", :collection => @search.locations %>
-	    </div>
-    </td>
-  </tr>
-  </table>
-	<%= link_to_function "Добавить расположение" do |page|
-		page.insert_html :bottom, "locations", :partial => "location", :object => Location.new
-	end %>
-	<br />
+  <div id="locations">
+    <% f.fields_for :locations do |form| %>
+      <%= render :partial => "location", :locals => {:f => form} %>
+    <% end %>
+  </div>
+  <p>
+    <%= add_link("Добавить расположение", "location") %>
+  </p>
+
 	<h2>Цены</h2>
-	<table>
-  <tr>
-    <td>
-	    <div id="prices" style="float:left">
-		    <%= render :partial => "price", :collection => @search.prices %>
-	    </div>
-    </td>
-  </tr>
-  </table>
-	<%= link_to_function "Добавить цену" do |page|
-		page.insert_html :bottom, "prices", :partial => "price", :object => Price.new
-	end %>
+  <div id="prices">
+    <% f.fields_for :prices do |form| %>
+      <%= render :partial => "price", :locals => {:f => form} %>
+    <% end %>
+  </div>
+  <p>
+    <%= add_link("Добавить цену", "price") %>
+  </p>
+
 	<h2>Количество комнат</h2>
-	<table>
-  <tr>
-    <td>
-	    <div id="numbers" style="float:left">
-		    <%= render :partial => "number", :collection => @search.numbers %>
-	    </div>
-   </td>
-  </tr>
-  </table>
-	<%= link_to_function "Добавить количество комнат" do |page|
-		page.insert_html :bottom, "numbers", :partial => "number", :object => Number.new
-	end %>
+  <div id="numbers">
+    <% f.fields_for :numbers do |form| %>
+      <%= render :partial => "number", :locals => {:f => form} %>
+    <% end %>
+  </div>
+  <p>
+    <%= add_link("Добавить количество комнат", "number") %>
+  </p>
+
 	<p>
 		<%= submit_tag "Обновить" %>
 	</p>

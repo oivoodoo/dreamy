@@ -1,16 +1,11 @@
 <% content_for :head do %>
-	<%= javascript_include_tag 'jquery' %>
-	<%= javascript_include_tag 'jquery.preload' %>
-
-	<script type="text/javascript">
-		function initialize()
-		{
-			$.preload('.big-images img', {
+	<script type="text/javascript">					
+    $(function(){
+      $.preload('.big-images img', {
 				placeholder:"<%= image_path('big_missing.gif') %>",
 				notFound:"<%= image_path('big_missing.gif') %>"
 			});
-		}
-		$(document).ready(initialize);
+    });
 	</script>
 <% end %>
 

@@ -1,36 +1,28 @@
 class HousesController < AdminController
-  layout("admin", conditions = {}, auto = false)
+  layout "admin"
   uses_tiny_mce(:options => AppConfig.default_mce_options, :only => [:new, :edit])
   skip_before_filter :verify_authenticity_token, :only => [:update_positions, :update_container]
 
-  # GET /houses
-  # GET /houses.xml
   def index
   end
 
   def index_rent
-    @houses_rent = House.all(:conditions => ["house_type = 'all' or house_type = 'rent'"]).paginate :page => params[:page]
+    @houses_rent = House.house_type_name_equals(["rent", "all"]).paginate :page => params[:page]
   end
 
   def index_sale
-    @houses_sale = House.all(:conditions => ["house_type = 'sale' or house_type = 'all'"]).paginate :page => params[:page]
+    @houses_sale = House.house_type_name_equals(["sale", "all"]).paginate :page => params[:page]
   end
 
-  # GET /houses/1
-  # GET /houses/1.xml
   def show
     @house = House.find(params[:id])
     @menus = HouseMenu.find(:all)
   end
 
-  # GET /houses/new
-  # GET /houses/new.xml
   def new
     @house = House.new
   end
 
-  # POST /houses
-  # POST /houses.xml
   def create
     @house = House.new(params[:house])
     @house.house_container_id = HouseContainer.first.id
@@ -51,8 +43,6 @@ class HousesController < AdminController
     @house = House.find(params[:id])
   end
 
-  # PUT /houses/1
-  # PUT /houses/1.xml
   def update
     @house = House.find(params[:id])
 

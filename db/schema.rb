@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101023135817) do
+ActiveRecord::Schema.define(:version => 20101024111910) do
 
   create_table "about_pages", :force => true do |t|
     t.string   "title"
@@ -156,12 +156,12 @@ ActiveRecord::Schema.define(:version => 20101023135817) do
     t.string   "meta_keywords"
     t.text     "meta_description"
     t.integer  "house_container_id"
-    t.string   "house_type"
     t.text     "total_price"
     t.text     "admin_comment"
     t.integer  "group_position",     :default => 0
     t.string   "page_title"
     t.text     "sale_bottom_text"
+    t.integer  "house_type_id"
   end
 
   create_table "locations", :force => true do |t|
@@ -169,8 +169,6 @@ ActiveRecord::Schema.define(:version => 20101023135817) do
     t.integer  "search_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "house_id"
-    t.integer  "sale_search_id"
   end
 
   create_table "main_menus", :force => true do |t|
@@ -201,8 +199,6 @@ ActiveRecord::Schema.define(:version => 20101023135817) do
     t.integer  "search_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "house_id"
-    t.integer  "sale_search_id"
   end
 
   create_table "phone_contacts", :force => true do |t|
@@ -237,18 +233,16 @@ ActiveRecord::Schema.define(:version => 20101023135817) do
   create_table "prices", :force => true do |t|
     t.string   "title"
     t.integer  "search_id"
-    t.integer  "house_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "sale_search_id"
   end
 
   create_table "queries", :force => true do |t|
-    t.string   "cost"
-    t.string   "location"
-    t.string   "number"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "location_id"
+    t.integer  "price_id"
+    t.integer  "number_id"
   end
 
   create_table "sale_pages", :force => true do |t|

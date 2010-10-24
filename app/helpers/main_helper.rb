@@ -20,22 +20,5 @@ module MainHelper
                         :house_type => house_type }
   end
 
-  def render_search_control_div(f, collection, name, title, css_class)
-    "<div class=\"forselect\">#{render_search_control(f, collection, name, title, css_class)}</div>"
-  end
-
-  def render_search_control(f, collection, name, title, css_class)
-    selected = ""
-    selected = params[:query][name] unless params[:query].blank?
-    f.select(name, collection.collect {|p| [p.title, p.id] }, {:include_blank => title, :selected => selected }, :class => css_class)
-  end
-
-  def render_search_control_div_title(f, collection, name, title, css_class)
-    "<div class=\"forselect\">#{render_search_control(f, collection, name, title, css_class)}</div>"
-  end
-
-  def render_search_control_title(f, collection, name, title, css_class)
-    f.select(name, collection.collect {|p| [p.title, p.title] }, {:include_blank => title }, :class => css_class)
-  end
 end
 

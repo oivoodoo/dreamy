@@ -1,17 +1,20 @@
 class MainController < ApplicationController
   before_filter :prepare_catalog_page, :only => %w(catalog sale_catalog)
-  before_filter :get_search, :only => %w(index catalog)
-  before_filter :get_sale_search, :only => %w(sale_catalog)
+  before_filter :get_search, :only => %w(index catalog sale_catalog)
 
   def index
-    @current_menu = 0
-
-    @query = Query.new
-    @house = House.find_main
-    @main_photo = House.find_main_photo
-    @main_page = MainPage.find(:first)
-
-    @title = @main_page.title
+    if params[:query]
+      @query = Query.new(params[:query])
+      get_houses(HouseType.all.collect(&:name))
+      render :action => :search
+    else
+      @current_menu = 0
+      @query = Query.new
+      @house = House.find_main
+      @main_photo = House.find_main_photo
+      @main_page = MainPage.find(:first)
+      @title = @main_page.title
+    end
   end
 
   def contacts
@@ -98,17 +101,16 @@ class MainController < ApplicationController
       @search = Search.first
     end
 
-    def get_sale_search
-      @sale_search = Search.first
-    end
-
     def get_houses(house_types)
-      if not params[:query].nil? then
+      if not params[:query].nil?
         @query = Query.new(params[:query])
         @houses = House.find_by_query(@query, params[:page], house_types)
       else
         if params[:query].nil?
-          @houses = House.find_all_with_paginate(params[:page], "(house_type = '#{house_types[0]}' or house_type = '#{house_types[1]}')")
+          @houses = House.house_type_name_equals(house_types).
+                          is_visible_eq(true).
+                          ascend_by_group_position.
+                          paginate(:page => params[:page])
         else
           @query = Query.new(params[:query])
           @houses = House.find_by_query(@query, params[:page], house_types)

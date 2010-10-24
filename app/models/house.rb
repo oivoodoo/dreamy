@@ -1,8 +1,11 @@
 class House < ActiveRecord::Base
   has_many :photos
-  has_one :price
   has_many :assets
 
+  belongs_to :number
+  belongs_to :location
+  belongs_to :price
+  belongs_to :house_type
   belongs_to :house_container
 
   default_scope :order => "houses.group_position"
@@ -36,17 +39,14 @@ class House < ActiveRecord::Base
 
   class << self
     def find_by_query(query, page, house_types)
-      House.house_type_equals(house_types).
-            price_id_like(query.cost).
-            location_id_like(query.location).
-            number_id_like(query.number).
+      House.house_type_name_equals(house_types).
+            price_id_like(query.price_id).
+            location_id_like(query.location_id).
+            number_id_like(query.number_id).
             is_visible_eq(true).
-            ascend_by_group_position
+            ascend_by_group_position.
+            paginate(:page => page)
    end
-
-    def find_all_with_paginate(page, house_type)
-      House.paginate  :per_page => self.per_page, :page => page, :conditions => ["is_visible = ? and #{house_type}", "1"], :order => "group_position"
-    end
 
     def find_main
       House.find(:first, :order => "updated_at DESC", :conditions => ["is_main = ?", "1"])

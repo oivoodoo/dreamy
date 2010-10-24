@@ -13,7 +13,7 @@
   <div>
     <%= f.text_area("admin_comment", :class => "mceEditor", :width => '100%', :height => '150px') %>
   </div>
-  <p>Тип дома: <%= f.select :house_type, HouseType.all.collect{|house_type| [house_type.title, house_type.id]}, :include_blank => false %></p>
+  <p>Тип дома: <%= f.select :house_type_id, HouseType.all.collect{|house_type| [house_type.title, house_type.id]}, :include_blank => false %></p>
   <p><%= f.check_box :is_main %><%= f.label :is_main, "Будет ли дом отображаться на главной странице?" %></p>
   <p><%= f.check_box :is_visible, {:checked => true} %><%= f.label :is_visible, "Будет ли дом отображаться в каталоге?" %></p>
   <div>

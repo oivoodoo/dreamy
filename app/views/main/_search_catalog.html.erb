@@ -1,0 +1,24 @@
+<% form_for :query, @query, :url => { :action => action_name }, :id => "main_form" do |f| %>
+  <div class="line">
+    <p class="main-header">Поиск по каталогу</p>
+    <div class="search-controls">
+      <span class="forselect search-select">
+        <%= f.select("price_id", @search.prices.collect {|p| [p.title, p.id] }, {:include_blank => 'Cтоимость за день'}, :class => "search-catalog-input") %>
+      </span>
+      <span class="forselect search-select">
+        <%= f.select("location_id", @search.locations.collect {|p| [p.title, p.id] }, {:include_blank => 'Cтоимость за день'}, :class => "search-catalog-input") %>
+      </span>
+      <span class="forselect search-select">
+        <%= f.select("number_id", @search.numbers.collect {|p| [p.title, p.id] }, {:include_blank => 'Cтоимость за день'}, :class => "search-catalog-input") %>
+      </span>
+      <span class="search-top-button">
+        <input type="submit" id="submit-button-hidden" class="hidden" />
+        <span>
+          <img src="<%= image_path('search2.png') %>" onclick="var form = document.getElementById('submit-button-hidden'); form.click();" style="cursor: pointer;"/>
+        </span>
+      </span>
+      <span class="search-comment">
+      </span>
+    </div>
+  </div>
+<% end %>
