@@ -3,17 +3,35 @@ class MainController < ApplicationController
   before_filter :get_search, :only => %w(index catalog sale_catalog)
 
   def index
-    if params[:query]
-      @query = Query.new(params[:query])
-      get_houses(HouseType.all.collect(&:name))
-      render :action => :search
-    else
-      @current_menu = 0
-      @query = Query.new
-      @house = House.find_main
-      @main_photo = House.find_main_photo
-      @main_page = MainPage.find(:first)
-      @title = @main_page.title
+    if request.format.html?
+      if params[:query]
+        @query = Query.new(params[:query])
+        get_houses(HouseType.all.collect(&:name))
+        render :action => :search
+      else
+        @current_menu = 0
+        @query = Query.new
+        @house = House.find_main
+        @main_photo = House.find_main_photo
+        @main_page = MainPage.find(:first)
+        @title = @main_page.title
+      end
+    end
+
+    respond_to do |format|
+      format.rss  do 
+        @houses = House.all
+        render :layout => false 
+      end
+    end
+
+  end
+
+  def feed
+    @houses = House.all
+
+    respond_to do |format|
+      format.rss  { render :layout => false }
     end
   end
 

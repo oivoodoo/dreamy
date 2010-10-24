@@ -6,6 +6,7 @@ Rails::Initializer.run do |config|
 
   config.gem 'formtastic'
   config.gem 'fastercsv'
+  config.gem 'sanitize'
 
   config.time_zone = 'UTC'
 

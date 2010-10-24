@@ -8,3 +8,7 @@
 <%= link_to 'Футер сайта', 'admin/footer' %><br />
 <%= link_to "Заказы", admin_contacts_path %>
 <%= link_to "Телефонные контакты", admin_phone_contacts_path %>
+<%= link_to "Экспорт домов(csv)", :controller => "houses", :action => "export", :format => "csv" %>
+<%= link_to "Экспорт домов(xml)", :controller => "houses", :action => "export", :format => "xml" %>
+<%= link_to "Экспорт домов(rss)", :controller => "main", :action => "feed", :format => "rss" %>
+

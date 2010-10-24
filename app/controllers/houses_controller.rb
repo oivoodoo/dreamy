@@ -1,4 +1,6 @@
 require 'fastercsv'
+require 'rubygems'
+require 'sanitize'
 
 class HousesController < AdminController
   layout "admin"
@@ -37,7 +39,27 @@ class HousesController < AdminController
       format.rss {render :layout => false}
       format.csv do
         csv_string = FasterCSV.generate do |csv|
-          csv << ["Title", "Text", "Comment", "Bottom Text", "Price", "Location", "Number of rooms"]
+          csv << ["Title", 
+            "Text", 
+            "Comment", 
+            "Bottom Text", 
+            "Total price", 
+            "Price", 
+            "Location", 
+            "Number of rooms", 
+            "House type", 
+            "Catalog title", 
+            "Special offer", 
+            "High Duration(first period)", 
+            "Cost day", 
+            "Cost week", 
+            "Const month", 
+            "High Duration(second period)", 
+            "Low Duration(first period)",
+            "Cost day",
+            "Cost week",
+            "Cost month",
+            "Low duration(second period)"]
 
           @houses.each do |h|
             location = h.location.title unless h.location.nil?
@@ -45,12 +67,26 @@ class HousesController < AdminController
             number = h.number.title unless h.number.nil?
 
             csv << [h.title, 
-              sanitize(h.text), 
-              sanitize(h.comment),
-              sanitize(h.bottom_text),
+              Sanitize.clean(h.text).gsub(/&#13;/, ""), 
+              Sanitize.clean(h.comment).gsub(/&#13;/, ""),
+              Sanitize.clean(h.bottom_text).gsub(/&#13;/, ""),
+              Sanitize.clean(h.total_price).gsub(/&#13;/, ""),
               price, 
               location, 
-              number]
+              number,
+              h.house_type.title,
+              h.catalog_title,
+              h.special_offer,
+              h.high_duration_1,
+              h.high_cost_day,
+              h.high_cost_week,
+              h.high_cost_month,
+              h.high_duration_2,
+              h.low_duration_1,
+              h.low_cost_day,
+              h.low_cost_week,
+              h.low_cost_month,
+              h.low_duration_2]
           end
         end
 

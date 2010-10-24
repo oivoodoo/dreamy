@@ -26,6 +26,7 @@ ActionController::Routing::Routes.draw do |map|
   map.do_change_password '/do_change_password', :controller => "users", :action => "do_change_password"
   map.root :controller => 'main', :action => 'index'
   map.connect '', :controller => 'main', :action => 'index'
+  map.connect '/index.:format', :controller => 'main', :action => "index"
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
 
@@ -39,4 +40,5 @@ ActionController::Routing::Routes.draw do |map|
   map.send_phone_contacts '/send_phone_contacts', :controller => "main", :action => "send_phone_contacts", :conditions => {:method => :post}
   map.search '/search', :controller => "main", :action => "search"
   map.export_rss '/export.:format', :controller => "houses", :action => "export"
+  map.feed '/feed.:format', :controller => "main", :action => "feed"
 end
