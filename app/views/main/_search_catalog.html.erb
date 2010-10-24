@@ -1,4 +1,4 @@
-<% form_for :query, @query, :url => { :action => action_name }, :id => "main_form" do |f| %>
+<% form_for :query, @query, :url => { :action => action_name }, :html => {:id => "main_form", :method => :get} do |f| %>
   <div class="line">
     <p class="main-header">Поиск по каталогу</p>
     <div class="search-controls">
@@ -6,10 +6,10 @@
         <%= f.select("price_id", @search.prices.collect {|p| [p.title, p.id] }, {:include_blank => 'Cтоимость за день'}, :class => "search-catalog-input") %>
       </span>
       <span class="forselect search-select">
-        <%= f.select("location_id", @search.locations.collect {|p| [p.title, p.id] }, {:include_blank => 'Cтоимость за день'}, :class => "search-catalog-input") %>
+        <%= f.select("location_id", @search.locations.collect {|p| [p.title, p.id] }, {:include_blank => 'Расположение'}, :class => "search-catalog-input") %>
       </span>
       <span class="forselect search-select">
-        <%= f.select("number_id", @search.numbers.collect {|p| [p.title, p.id] }, {:include_blank => 'Cтоимость за день'}, :class => "search-catalog-input") %>
+        <%= f.select("number_id", @search.numbers.collect {|p| [p.title, p.id] }, {:include_blank => 'Количество комнат'}, :class => "search-catalog-input") %>
       </span>
       <span class="search-top-button">
         <input type="submit" id="submit-button-hidden" class="hidden" />
