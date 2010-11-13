@@ -32,6 +32,8 @@
                 <% if not @main_photo.nil? then %>
                   <%= image_tag @main_photo.photo.url(:medium), :width => "300px" %>
                 <% end %>
+                <br />
+                <h2><%= house_title_link(@house) unless @house.nil? %></h2>
               </center>
             </div>
           <% end %>
@@ -39,11 +41,6 @@
         <div class="clearer">&nbsp;</div>
 			<% end %>
 			<div class="pre-search">
-				<% if not @house.nil? then %>
-					<h2>
-						<%= house_title_link(@house) %>
-					</h2>
-				<% end %>
 				<%= link_to "все предложения", :controller => :main, :action => :catalog %>
 			</div>
 			<div class="search-form">

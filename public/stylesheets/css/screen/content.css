@@ -67,7 +67,7 @@ hr {color: #fff;background: transparent;margin: 0 0 0.5em 0;padding: 0 0 0.5em 0
 .footer-right p { text-align: right !important; margin: 0 !important; }
 
 .services-text {color: #999999 !important;font-size: 18px !important;font-weight: normal;}
-.pre-search {margin-bottom: 20px;}
+.pre-search {margin-bottom: 20px;margin-top: 10px;}
 .pre-search h2 a {color:#474747;font-size:20px;font-style:italic;font-weight:normal;}
 .search-form {border-bottom:1px solid #999999;margin-bottom: 25px;} 
 .search-form p {font-style: italic;margin-bottom: 8px;} 
@@ -120,15 +120,17 @@ body {background-color: #FFF;font-family: Georgia, Verdana, Helvetica, Arial, sa
 
 /* end */
 
-#image-container {width: 320px; height: 225px;}
+#image-container {width: 320px; height: 230px;}
 
-#header .search {width: 140px;float:left;}
+#header .search {float:left;}
 #header .search input[type='text'] {width:70px;height: 14px;font-size:10px;padding:1px;float:left;border: 1px solid #ebe4e4;text-align:right;color:#464646;font-style:italic;margin-right:2px;}
 #header .search input[type='image'] {width:21px;height:18px;float:left;}
 #header .search h4 img {margin-right:3px;padding-top:6px;}
-#header #logo {float:left;margin-left:150px;}
+#header #logo {float:left;}
 #header .info {float:right;text-align:right;}
 #header .info a {text-decoration:underline;font-weight:normal;font-size:14px;}
+#header #header-right {width: 280px;float:right;}
+#header .lang {text-align:right;position:relative;top:15px;}
 
 .notification {color:red;padding:10px 0px;}
 

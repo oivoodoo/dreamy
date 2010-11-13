@@ -1,0 +1,6 @@
+<% content_for :top_menu do %>
+  <%= link_to "Добавить", new_admin_asset_path %><br />
+  <%= link_to 'Назад', admin_assets_path %>
+<% end %>
+
+<a href="<%= @asset.url %>"><%= asset.document_file_name %></a>

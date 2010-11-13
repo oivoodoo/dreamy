@@ -13,10 +13,12 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :searches
   map.resources :sale_searches
   map.resources :banners
+  map.resources :assets, :only => [:show]
 
   map.namespace :admin do |admin|
     admin.resources :contacts, :only => [:index, :destroy]
     admin.resources :phone_contacts, :only => [:index, :destroy]
+    admin.resources :assets, :only => [:new, :create, :index, :show]
   end
 
   map.connect '/users/logout', :controller => "users", :action => "logout"
