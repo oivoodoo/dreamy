@@ -131,6 +131,7 @@ body {background-color: #FFF;font-family: Georgia, Verdana, Helvetica, Arial, sa
 #header .info a {text-decoration:underline;font-weight:normal;font-size:14px;}
 #header #header-right {width: 280px;float:right;}
 #header .lang {text-align:right;position:relative;top:15px;}
+#header-content {float:left;width:320px;margin-left:10px;}
 
 .notification {color:red;padding:10px 0px;}
 
