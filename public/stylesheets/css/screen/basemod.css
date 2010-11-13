@@ -17,7 +17,7 @@
   #nav_main ul li#current {background: transparent} 
 
   #content {width: 100%;margin-bottom: 30px;} 
-  #content #content-column-1 {float: left;width: 48%;}
-  #content #content-column-2 {float: right;width: 473px;} 
+  #content #content-column-1 {float: left;width:600px;}
+  #content #content-column-2 {float: right;width:330px;margin-left:10px;} 
   .clearer {clear: both;font-size:1px;height:1px;}
 }

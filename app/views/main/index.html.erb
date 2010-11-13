@@ -30,7 +30,7 @@
             <div id="image-container">
               <center>
                 <% if not @main_photo.nil? then %>
-                  <%= image_tag @main_photo.photo.url(:medium) %>
+                  <%= image_tag @main_photo.photo.url(:medium), :width => "300px" %>
                 <% end %>
               </center>
             </div>
@@ -44,7 +44,7 @@
 						<%= house_title_link(@house) %>
 					</h2>
 				<% end %>
-				<%= link_to "Все виллы острова Самуи", :controller => :main, :action => :catalog %>
+				<%= link_to "все предложения", :controller => :main, :action => :catalog %>
 			</div>
 			<div class="search-form">
 				<%= render :partial => 'main/templates/search_form' %>				
