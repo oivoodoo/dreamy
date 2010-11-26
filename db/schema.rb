@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101113203433) do
+ActiveRecord::Schema.define(:version => 20101126213232) do
 
   create_table "about_pages", :force => true do |t|
     t.string   "title"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(:version => 20101113203433) do
     t.datetime "updated_at"
     t.string   "meta_keywords"
     t.text     "meta_description"
+    t.string   "name"
   end
 
   create_table "assets", :force => true do |t|

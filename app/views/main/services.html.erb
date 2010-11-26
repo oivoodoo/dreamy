@@ -2,11 +2,9 @@
   <%= render :partial => 'templates/meta', :object => @services_page %>
 <% end %>
 
-<div id="main">
-	<div id="content">
-		<h2><%= h @services_page.title %></h2>	
-		<div>
-			<%= @services_page.body %>
-		</div>
-	</div>
+<div id="content">
+  <h2><%= h @services_page.title %></h2>	
+  <div>
+    <%= @services_page.body %>
+  </div>
 </div>

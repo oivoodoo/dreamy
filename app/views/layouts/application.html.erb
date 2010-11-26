@@ -20,6 +20,7 @@
 			<%= render :partial => "templates/header" %>
 			<%= render :partial => "templates/navigation", :locals => { :current_menu => @current_menu, :main_menus => @main_menus } %>
 			<div id="main">
+        <div class="custom-line" style="height: 1px;"></div>
 				<%= yield %>
 				<%= yield :admin %>
         <div class="clearer">&nbsp;</div>

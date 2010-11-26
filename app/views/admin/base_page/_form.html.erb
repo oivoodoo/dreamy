@@ -7,6 +7,12 @@
   <%= f.label :title, "Заголовок" %><br />
   <%= f.text_field :title, :style => "width: 100%" %>
 </p>
+<% if f.object.respond_to?(:name) %>
+  <p>
+    <%= f.label :name, "Имя для ссылки(латиницей)" %><br />
+    <%= f.text_field :name %>
+  </p>
+<% end %>
 <p><%= f.label :meta_keywords, "Мета слова(meta keywords):" %></p>
 <p><%= f.text_area :meta_keywords, :rows => 5, :style => "width: 100%" %></p>
 <p><%= f.label :meta_description, "Мета описание(meta description):" %></p>

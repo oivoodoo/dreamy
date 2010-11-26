@@ -79,11 +79,12 @@ hr {color: #fff;background: transparent;margin: 0 0 0.5em 0;padding: 0 0 0.5em 0
 select.search-index-input {width: 190px; color:#666;}
 .search-top-button {position: relative;top: 0px;}
 .search-image-bottom {margin-bottom: 15px;}
+.search-form {margin-bottom:10px;}
 
 .main-header {margin-bottom: 10px;font-style: italic;}
-.line{border-bottom: 1px solid #999999;padding-bottom: 10px;padding-left: 10px;margin-bottom: 20px;margin-top: -10px;}
-.right-column {float: right;width: 460px;}
-.left-column {float: left; width: 460px;}
+.line{border-bottom: 1px solid #999999;padding-bottom: 20px;padding-left: 10px;margin-bottom: 20px;margin-top: -10px;}
+.right-column, .left-column {float: left;;width: 420px;}
+.left-column {margin-right:20px;}
 #main input[type='checkbox'] {margin-right: 5px;}
 .photo_file_upload {margin-bottom: 10px;}
 #new_house p {margin-bottom: 10px;}
@@ -98,7 +99,7 @@ select.search-index-input {width: 190px; color:#666;}
 
 #main input[type='text'] {margin-bottom: 2px;}
 .line-content {background:#FFFFFF none repeat scroll 0;padding: 0px 20px;clear:both;}
-.custom-line {border-bottom:1px solid #999999;padding-left:10px;}
+.custom-line {border-bottom:1px solid #999999;height:1px;margin-bottom:10px;}
 .banner-link {margin-right: -2px;}
 #catalog_body_container {margin-bottom: 10px;}
 
@@ -133,4 +134,5 @@ body {background-color: #FFF;font-family: Georgia, Verdana, Helvetica, Arial, sa
 .notification {color:red;padding:10px 0px;}
 #items li {margin-left: 1.5em;}
 #content ul {margin: 0px 0px 1em 1em;}
+#search-container {margin-bottom: 20px;}
 }

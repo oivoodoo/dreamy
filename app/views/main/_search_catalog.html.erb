@@ -1,5 +1,5 @@
-<% form_for :query, @query, :url => { :action => action_name }, :html => {:id => "main_form", :method => :get} do |f| %>
-  <div class="line">
+<div id="search-container">
+  <% form_for :query, @query, :url => { :action => action_name }, :html => {:id => "main_form", :method => :get} do |f| %>
     <p class="main-header">Поиск по каталогу</p>
     <div class="search-controls">
       <span class="forselect search-select">
@@ -20,5 +20,6 @@
       <span class="search-comment">
       </span>
     </div>
-  </div>
-<% end %>
+  <% end %>
+</div>
+<div class="custom-line"></div>

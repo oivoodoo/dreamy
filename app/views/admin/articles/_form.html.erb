@@ -3,6 +3,10 @@
   <%= f.label :title, "Заголовок" %><br />
   <%= f.text_field :title %>
 </p>
+<p>
+  <%= f.label :name, "Имя для ссылки(латиницей)" %><br />
+  <%= f.text_field :name %>
+</p>
 <div>
   <p><%= f.label :body, "Описание" %></p>
   <%= f.text_area("body", :class => "mceEditor", :width => '100%', :height => '400px') %>
