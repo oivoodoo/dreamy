@@ -3,10 +3,10 @@
 <% end %>
 
 <% content_for :top_menu do %>
-  <%= link_to "Назад", :controller => :admin, :action => :index %>
+  <%= link_to "Назад", admin_root_path %>
 <% end %>
 
-<% form_for (@search) do |f| %>
+<% form_for [:admin, @search] do |f| %>
 
   <%= javascript_include_tag 'forms', 'delegate' %>
   <script type="text/javascript">
