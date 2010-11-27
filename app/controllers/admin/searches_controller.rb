@@ -1,4 +1,4 @@
-class SearchesController < AdminController
+class SearchesController < Admin::AdminController
   layout("admin", conditions = {}, auto = false)
   def edit
     @search = Search.find(:first)

@@ -1,11 +1,15 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :users, :members => {:logout => :get, :change_password => :get, :do_change_password => :put} 
-  map.resources :session
   map.index_rent '/h/index_rent', :controller => "houses", :action => "index_rent"
   map.index_sale '/h/index_sale', :controller => "houses", :action => "index_sale"
   map.resources :houses, :member => {:update_positions => :post, :update_container => :post, :index_rent => :get, :index_sale => :get, :export => :get}
 
   map.namespace :admin do |admin|
+    admin.root :controller => "admin"
+    admin.resources :users, :members => {:logout => :get, :change_password => :get, :do_change_password => :put} 
+    admin.resources :session
+    admin.new_session '/admin/new_session', :controller => "admin", :action => "new_session"
+    admin.login '/login', :controller => "admin", :action => "login"
+    admin.base_page '/base_page', :controller => "base_page", :action => "index"
     admin.resources :conditions
     admin.resources :main_menus
     admin.resources :house_menus
@@ -16,11 +20,11 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :contacts, :only => [:index, :destroy]
     admin.resources :phone_contacts, :only => [:index, :destroy]
     admin.resources :assets, :only => [:new, :create, :index, :show]
+    admin.connect ':controller/:action/:id'
+    admin.connect ':controller/:action/:id.:format'
   end
 
   map.connect '/users/logout', :controller => "users", :action => "logout"
-  map.login '/admin/login', :controller => "admin", :action => "login"
-  map.new_session '/admin/new_session', :controller => "admin", :action => "new_session"
   map.change_password '/change_password', :controller => "users", :action => "change_password"
   map.do_change_password '/do_change_password', :controller => "users", :action => "do_change_password"
   map.root :controller => 'main', :action => 'index'
@@ -39,8 +43,8 @@ ActionController::Routing::Routes.draw do |map|
   map.export_rss '/export.:format', :controller => "houses", :action => "export"
   map.feed '/feed.:format', :controller => "main", :action => "feed"
   
+  map.article '/:name', :controller => "main", :action => "show_article"
+
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
-
- map.article '/:name', :controller => "main", :action => "show_article"
 end

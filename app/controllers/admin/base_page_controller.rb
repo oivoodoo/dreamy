@@ -1,4 +1,4 @@
-class BasePageController < AdminController
+class Admin::BasePageController < Admin::AdminController
   voo_base_pages :main_page, 
                  :contacts_page, 
                  :about_page, 

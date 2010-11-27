@@ -1,8 +1,8 @@
 <tr>
   <td><%= h article.title.capitalize %></td>
-	<td><%= link_to 'Показать', article %></td>
-	<td><%= link_to 'Редактировать', edit_article_path(article) %></td>
-	<td><%= link_to 'Удалить', article, 
+	<td><%= link_to 'Показать', [:admin, article] %></td>
+	<td><%= link_to 'Редактировать', edit_admin_article_path(article) %></td>
+	<td><%= link_to 'Удалить', [:admin, article], 
 								:confirm => 'Вы действительно хотите удалить?', 
 								:method => :delete %></td>
 </tr>

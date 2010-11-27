@@ -1,4 +1,4 @@
-class UsersController < AdminController
+class Admin::UsersController < Admin::AdminController
   # Be sure to include AuthenticationSystem in Application Controller instead
   include AuthenticatedSystem
   

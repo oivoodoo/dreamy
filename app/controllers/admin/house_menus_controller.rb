@@ -1,4 +1,4 @@
-class HouseMenusController < AdminController
+class Admin::HouseMenusController < Admin::AdminController
 
   layout("admin", conditions = {}, auto = false)
 

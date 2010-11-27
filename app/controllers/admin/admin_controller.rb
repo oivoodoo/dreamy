@@ -1,6 +1,6 @@
 module Admin ; end
 
-class AdminController < ApplicationController
+class Admin::AdminController < ApplicationController
   before_filter :authenticate, :except => %w(login new_session)
   
   layout "admin"

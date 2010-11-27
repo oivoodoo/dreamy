@@ -1,4 +1,4 @@
-class BannersController < AdminController
+class Admin::BannersController < Admin::AdminController
 
   def index
     @banners = Banner.all

@@ -1,4 +1,4 @@
-class Admin::HeaderController < AdminController
+class Admin::HeaderController < Admin::AdminController
   uses_tiny_mce(:options => AppConfig.default_mce_options, :only => [:index, :update])
   
   def index

@@ -1,4 +1,4 @@
-class TinyMcePhotosController < ApplicationController
+class Admin::TinyMcePhotosController < ApplicationController
   before_filter :login_required
   
   #because the TinyMCE image uploader can't provide the auth token
