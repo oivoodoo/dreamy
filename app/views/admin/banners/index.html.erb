@@ -1,15 +1,15 @@
 <% content_for :top_menu do %>
-  <%= link_to "Добавить", new_banner_path %>
-  <%= link_to "Назад", :controller => :admin, :action => :index %>
+  <%= link_to "Добавить", new_admin_banner_path %>
+  <%= link_to "Назад", admin_root_path %>
 <% end %>
 
 <table>
   <tbody>
-    <tr>
-      <% for banner in @banners %>
+    <% for banner in @banners %>
+      <tr>
         <td><img src="<%= banner.banner.url %>" /></td>
-        <td width="10%"><%= link_to "Удалить", banner, :confirm => "Вы действительно хотите удалить?", :method => :delete %></td>
-      <% end %>
-    </tr>
+        <td width="10%"><%= link_to "Удалить", [:admin, banner], :confirm => "Вы действительно хотите удалить?", :method => :delete %></td>
+      </tr>
+    <% end %>
   </tbody>
 </table>
