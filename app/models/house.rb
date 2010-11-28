@@ -5,6 +5,7 @@ class House < ActiveRecord::Base
   belongs_to :number
   belongs_to :location
   belongs_to :price
+  belongs_to :beach
   belongs_to :house_type
   belongs_to :house_container
 
