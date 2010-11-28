@@ -1,4 +1,4 @@
-class PositionController < AdminController
+class PositionController < Admin::AdminController
   def index
     @houses = House.find(:all)
   end
