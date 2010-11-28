@@ -14,6 +14,7 @@
       var price='<%= generate_template(f, :prices) %>';
       var number='<%= generate_template(f, :numbers) %>';
       var loc='<%= generate_template(f, :locations) %>';
+      var beach='<%= generate_template(f, :beaches) %>';
     //]]>
   </script>
 
@@ -45,6 +46,16 @@
   </div>
   <p>
     <%= add_link("Добавить количество комнат", "number") %>
+  </p>
+
+	<h2>Пляжи</h2>
+  <div id="beaches">
+    <% f.fields_for :beaches do |form| %>
+      <%= render :partial => "beach", :locals => {:f => form} %>
+    <% end %>
+  </div>
+  <p>
+    <%= add_link("Добавить пляж", "beach") %>
   </p>
 
 	<p>

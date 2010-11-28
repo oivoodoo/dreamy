@@ -43,6 +43,7 @@ class House < ActiveRecord::Base
             price_id_like(query.price_id).
             location_id_like(query.location_id).
             number_id_like(query.number_id).
+            beach_id_like(query.beach_id).
             is_visible_eq(true).
             ascend_by_group_position.
             paginate(:page => page)

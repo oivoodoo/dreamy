@@ -21,6 +21,7 @@
     <p><%= select("house", "price_id", Price.find(:all).collect {|p| [p.title, p.id] }, :name => "house[price_id]") %></p>
     <p><%= select("house", "location_id", Location.find(:all).collect {|p| [p.title, p.id] }, :name => "house[location_id]") %></p>
     <p><%= select("house", "number_id", Number.find(:all).collect {|p| [p.title, p.id] }, :name => "house[number_id]") %></p>
+    <p><%= select("house", "beach_id", Beach.find(:all).collect {|p| [p.title, p.id] }, :name => "house[beach_id]") %></p>
   </div>
   <table class="admin-table">
     <tbody>

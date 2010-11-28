@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101126213232) do
+ActiveRecord::Schema.define(:version => 20101128161633) do
 
   create_table "about_pages", :force => true do |t|
     t.string   "title"
@@ -49,6 +49,13 @@ ActiveRecord::Schema.define(:version => 20101126213232) do
     t.string   "banner_content_type"
     t.integer  "banner_file_size"
     t.datetime "banner_updated_at"
+  end
+
+  create_table "beaches", :force => true do |t|
+    t.string   "title"
+    t.integer  "search_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "catalog_pages", :force => true do |t|
@@ -244,6 +251,7 @@ ActiveRecord::Schema.define(:version => 20101126213232) do
     t.integer  "location_id"
     t.integer  "price_id"
     t.integer  "number_id"
+    t.integer  "beach_id"
   end
 
   create_table "sale_pages", :force => true do |t|
@@ -271,6 +279,7 @@ ActiveRecord::Schema.define(:version => 20101126213232) do
     t.integer  "number_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "beach_id"
   end
 
   create_table "services_pages", :force => true do |t|

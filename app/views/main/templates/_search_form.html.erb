@@ -20,6 +20,10 @@
           <td><%= f.select("number_id", @search.numbers.collect {|p| [p.title, p.id] }, {:include_blank => 'Количество спален'}, :class => "search-index-input") %></td>
 					<td>&nbsp;</td>
 				</tr>
+        <tr>
+          <td><%= f.select("beach_id", @search.beaches.collect {|p| [p.title, p.id] }, {:include_blank => 'Пляж'}, :class => "search-index-input") %></td>
+					<td>&nbsp;</td>
+				</tr>
 			</tbody>
 		</table>
 	</div>
