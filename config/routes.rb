@@ -1,7 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.index_rent '/h/index_rent', :controller => "houses", :action => "index_rent"
-  map.index_sale '/h/index_sale', :controller => "houses", :action => "index_sale"
-  map.resources :houses, :member => {:update_positions => :post, :update_container => :post, :index_rent => :get, :index_sale => :get, :export => :get}
+  map.resources :houses, :only => [:show]
 
   map.namespace :admin do |admin|
     admin.root :controller => "admin"
@@ -20,18 +18,17 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :contacts, :only => [:index, :destroy]
     admin.resources :phone_contacts, :only => [:index, :destroy]
     admin.resources :assets, :only => [:new, :create, :index, :show]
+    admin.resources :houses, :member => {:update_positions => :post, :update_container => :post, :export => :get, :rent => :get, :sale => :get}
+    admin.index_rent '/h/index_rent', :controller => "houses", :action => "index_rent"
+    admin.index_sale '/h/index_sale', :controller => "houses", :action => "index_sale"
     admin.connect ':controller/:action/:id'
     admin.connect ':controller/:action/:id.:format'
   end
 
-  map.connect '/users/logout', :controller => "users", :action => "logout"
-  map.change_password '/change_password', :controller => "users", :action => "change_password"
-  map.do_change_password '/do_change_password', :controller => "users", :action => "do_change_password"
   map.root :controller => 'main', :action => 'index'
   map.connect '', :controller => 'main', :action => 'index'
   map.connect '/index.:format', :controller => 'main', :action => "index"
 
-  # Add to voodoo plugin
   map.about '/about', :controller => "main", :action => "about"
   map.services '/services', :controller => "main", :action => "services"
   map.travelling '/travelling', :controller => "main", :action => "travelling"
