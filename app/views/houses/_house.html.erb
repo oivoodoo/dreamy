@@ -1,7 +1,5 @@
 <% content_for :head do %>
-	<%= javascript_include_tag 'jquery' %>
-	<%= javascript_include_tag 'jquery.preload' %>
-	<%= javascript_include_tag 'jcarousellite' %>
+  <%= javascript_include_tag 'jquery', 'jquery.preload', 'jcarousellite', :cache => "catalog" %>
 
 	<script type="text/javascript">
 		function intitializePage()

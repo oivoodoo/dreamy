@@ -1,5 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :houses, :only => [:show]
+  map.resources :articles, :only => [:show]
 
   map.namespace :admin do |admin|
     admin.root :controller => "admin"
@@ -40,7 +41,7 @@ ActionController::Routing::Routes.draw do |map|
   map.export_rss '/export.:format', :controller => "houses", :action => "export"
   map.feed '/feed.:format', :controller => "main", :action => "feed"
   
-  map.article '/:name', :controller => "main", :action => "show_article"
+  map.article '/:name', :controller => "articles", :action => "show"
 
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'

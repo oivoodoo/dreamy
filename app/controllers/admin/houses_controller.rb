@@ -11,6 +11,10 @@ class Admin::HousesController < Admin::AdminController
   include ActionView::Helpers::SanitizeHelper
   include ActionView::Helpers::TextHelper
 
+  def index
+    
+  end
+
   def index_rent
     @houses_rent = House.house_type_name_equals(["rent", "all"]).paginate :page => params[:page]
   end

@@ -3,9 +3,9 @@
 		<% shadow_frame do %>
 			<div class="big-images" style="width: 405px; height: 312px;">
 				<center>
-					<%= link_to "#{image_tag(big_image.photo.url(:medium))}", :controller => :main, :action => :show_house, :id => house_id, :house_type => house_type %>
+          <%= link_to "#{image_tag(big_image.photo.url(:medium))}", house_path(:id => house_id, :house_type => house_type) %>
           <h2 class="search-result-bottom">
-            <a href="<%= url_for(:controller => :main, :action => :show_house, :id => house_id, :house_type => house_type) %>">
+            <a href="<%= house_path(:id => house_id, :house_type => house_type) %>">
               <b style="color: red; margin-right: 10px;"><%= house_special_offer %></b><span><%= house_title %></span><span style="color: #999999;">&#187</span>
             </a>
           </h2>

@@ -60,17 +60,6 @@ class MainController < ApplicationController
     @title = @sale_page.title
   end
  
-  def show_house
-    @house = House.find(params[:id])
-    @menus = HouseMenu.find(:all, :order => "position")
-    @current_menu = 1
-  end
-
-  def show_article
-    @article = Article.find_by_name(params[:name]) || Article.find_by_id(params[:name])
-    @title = @article.title unless @article.title.nil?
-  end
-
   def send_contacts
     contact = Contact.new(params[:contacts])
     contact.save

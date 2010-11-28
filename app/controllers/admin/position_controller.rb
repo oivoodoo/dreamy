@@ -1,4 +1,4 @@
-class PositionController < Admin::AdminController
+class Admin::PositionController < Admin::AdminController
   def index
     @houses = House.find(:all)
   end
@@ -12,7 +12,7 @@ class PositionController < Admin::AdminController
         house.save
       end
     end
-    redirect_to :controller => :houses,
+    redirect_to :controller => 'admin/houses',
                 :action => :index
   end
 end

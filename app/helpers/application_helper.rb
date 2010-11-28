@@ -28,7 +28,7 @@ module ApplicationHelper
   end
   
   def house_title_link(house)
-    "<a href=\"#{url_for(:controller => :main, :action => :show_house, :id => house.id)}\">
+    "<a href=\"#{url_for(house_path(:id => house.id))}\">
       #{house_title(house)}<span style=\"color: #999999; \">&#187</span></a>"
   end
   
