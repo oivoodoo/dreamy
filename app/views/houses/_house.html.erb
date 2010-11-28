@@ -24,7 +24,7 @@
 						reload_big_image();
 					 }
 				 });
-				$(".carousel").attr("style", $(".carousel").attr("style") + ";width: 405px !important;");
+				$(".carousel").attr("style", $(".carousel").attr("style") + ";width: 320px !important;");
 				reload_big_image();
 				reload_small_image();
 			<% end %>
@@ -55,7 +55,7 @@
 
 		function reload_big_image()
 		{
-			$.preload('#big-image-container img', {
+			$.preload('#image-container img', {
 				placeholder:"<%= image_path('big_missing.gif') %>",
 				notFound:"<%= image_path('big_missing.gif') %>"
 			});
@@ -75,7 +75,7 @@
 			<% for photo in house.photos %>
 				if (index == <%= i %>)
 				{
-					getContainer().innerHTML = "<center><img src=\'<%= image_path(photo.photo.url(:medium)) %>\' lowsrc=\'<%= image_path('big_missing.jpg') %>\' /></center>";
+					getContainer().innerHTML = "<center><img src=\'<%= image_path(photo.photo.url(:medium)) %>\' lowsrc=\'<%= image_path('big_missing.jpg') %>\' width='300px;'/></'enter>";
 					$('#image<%= @house.photos[i].id %>').parent().attr("style", "float: left; height:78px; width:96px;");
 				}
 			<% i += 1 %>
@@ -84,7 +84,7 @@
 
 		function getContainer()
 		{
-			return document.getElementById('big-image-container');
+			return document.getElementById('image-container');
 		}
 		$(document).ready(intitializePage);
 	</script>
@@ -123,9 +123,9 @@
 	<% if house.photos.size > 0 %>
     <div id="big-image">
       <% shadow_frame do %>
-        <div id="big-image-container" style="width: 405px; height: 307px;">
+        <div id="image-container">
           <center>
-            <img src="<%= house.photos[0].photo.url(:medium) %>">
+            <img src="<%= house.photos[0].photo.url(:medium) %>" width="300px;">
           </center>
         </div>
       <% end %>

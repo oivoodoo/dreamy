@@ -1,0 +1,13 @@
+<% content_for :top_menu do %>
+  <%= link_to "Добавить", new_admin_house_path %><br />
+  <%= link_to "Назад", admin_houses_path %>
+<% end %>
+
+<div id="content">
+  <div style="float: right;">
+		<%= link_to 'Редактировать', edit_admin_house_path(show_house), :style => "PADDING-RIGHT: 10px" %>
+		<%= link_to 'Удалить', [:admin, show_house], :confirm => 'Вы действительно хотите удалить?', :method => :delete %>
+	</div>
+	<%= render :partial => "house", :object => show_house %>
+	<div class="crearer">&nbsp</div>
+</div>

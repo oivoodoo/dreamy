@@ -118,7 +118,6 @@ class Admin::HousesController < Admin::AdminController
 
   def update
     @house = House.find(params[:id])
-
     if @house.update_attributes(params[:house])
       flash[:notice] = 'House was successfully updated.'
       redirect_to houses_path
@@ -136,10 +135,11 @@ class Admin::HousesController < Admin::AdminController
   end
 
   def update_container
+    params[:page] = 1 if params[:page].to_i <= 0
     if params[:house_type] == 'rent'
-      @houses = House.all(:conditions => ["house_type = 'all' or house_type = 'rent'"])
+      @houses = House.house_type_name_equals(['all', 'rent']).paginate(:page => params[:page])
     else
-      @houses = House.all(:conditions => ["house_type = 'sale' or house_type = 'all'"])
+      @houses = House.house_type_name_equals(['all', 'sale']).paginate(:page => params[:page])
     end
     render :partial => "editable_house", :collection => @houses, :locals => {:house_type => params[:house_type]}
   end
@@ -147,7 +147,6 @@ class Admin::HousesController < Admin::AdminController
   def destroy
     @house = House.find(params[:id])
     @house.destroy
-
     redirect_to(houses_url)
   end
 

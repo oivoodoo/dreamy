@@ -40,14 +40,14 @@ hr {color: #fff;background: transparent;margin: 0 0 0.5em 0;padding: 0 0 0.5em 0
 .sub-content-back-link {margin: 0 0 0 1em} 
 
 #big-image {margin-bottom: 10px;}
-#small-big-image {float:right;margin-right: 30px;margin-top: 10px;}
+#small-big-image {margin-top: 10px;}
 #small-big-image span {margin-right: 4px;} 
 
 .no-margin {margin: 0px !important;} 
 .no-border {border: 0;}
 .inner-small-image {margin-bottom: 0px;}
 .left-button, .right-button {position:relative;top:-46px;height: 0px;cursor: pointer;z-index: 1000;height: 1px;width: 1px;}
-.right-button {left:394px;} 
+.right-button {left:314px;} 
 .left-button {left:-15px;} 
 .row-selected {background-color: #f6f6f6;}
 

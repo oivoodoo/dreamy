@@ -1,9 +1,9 @@
 <% content_for :top_menu do %>
-  <%= link_to "Добавить", new_house_menu_path %><br />
-  <%= link_to "Назад", house_menus_path %>
+  <%= link_to "Добавить", new_admin_house_menu_path %><br />
+  <%= link_to "Назад", admin_house_menus_path %>
 <% end %>
 
-<% form_for(@house_menu) do |f| %>
+<% form_for [:admin, @house_menu] do |f| %>
   <%= f.error_messages %>
 
   <p>

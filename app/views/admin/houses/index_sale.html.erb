@@ -1,6 +1,6 @@
 <% content_for :top_menu do %>
-  <%= render :partial => 'houses/templates/top_menu' %>
-  <%= link_to "Назад", :controller => :admin, :action => :index %>
+  <%= render :partial => 'admin/houses/templates/top_menu' %>
+  <%= link_to "Назад", admin_root_path %>
 <% end %>
 
 <% content_for :header do %>
@@ -31,12 +31,12 @@
         var value = $(houses[i][0]).getValue();
         values.push({'id': houses[i][1], 'value': value})
       }
-      new Ajax.Request('/houses/update_positions',
+      new Ajax.Request('/admin/houses/update_positions',
 			  {evalScripts: true,
 			   parameters: {values: values.toJSON(), page: <%= params[:page].to_i %>},
 			   asynchronous: true,
 			   onComplete: function(request) {
-			   	 new Ajax.Updater('sale', '/houses/update_container', {
+			   	 new Ajax.Updater('sale', '/admin/houses/update_container', {
               parameters: {page: <%= params[:page].to_i %>, house_type: 'sale'}
 			   	 });
 			   }

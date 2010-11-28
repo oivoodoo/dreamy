@@ -19,7 +19,7 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :contacts, :only => [:index, :destroy]
     admin.resources :phone_contacts, :only => [:index, :destroy]
     admin.resources :assets, :only => [:new, :create, :index, :show]
-    admin.resources :houses, :member => {:update_positions => :post, :update_container => :post, :export => :get, :rent => :get, :sale => :get}
+    admin.resources :houses, :member => {:export => :get, :rent => :get, :sale => :get}, :collection => {:update_positions => :post, :update_container => :post}
     admin.index_rent '/h/index_rent', :controller => "houses", :action => "index_rent"
     admin.index_sale '/h/index_sale', :controller => "houses", :action => "index_sale"
     admin.connect ':controller/:action/:id'

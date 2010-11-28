@@ -155,7 +155,7 @@
 
   <div id="photos">
     <% f.fields_for :photos do |form| %>
-      <%= render :partial => "/houses/photo", :locals => {:f => form} %>
+      <%= render :partial => "admin/houses/photo", :locals => {:f => form} %>
     <% end %>
   </div>
   <p>
@@ -164,7 +164,7 @@
 
   <div id="assets">
     <% f.fields_for :assets do |form| %>
-      <%= render :partial => "/houses/asset", :locals => {:f => form} %>
+      <%= render :partial => "admin/houses/asset", :locals => {:f => form} %>
     <% end %>
   </div>
   <p><%= add_link("Добавить документ", "asset") %></p>
