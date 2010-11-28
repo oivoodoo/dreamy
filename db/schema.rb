@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101128161633) do
+ActiveRecord::Schema.define(:version => 20101128162120) do
 
   create_table "about_pages", :force => true do |t|
     t.string   "title"
@@ -170,6 +170,7 @@ ActiveRecord::Schema.define(:version => 20101128161633) do
     t.string   "page_title"
     t.text     "sale_bottom_text"
     t.integer  "house_type_id"
+    t.integer  "beach_id"
   end
 
   create_table "locations", :force => true do |t|

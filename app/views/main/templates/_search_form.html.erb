@@ -10,10 +10,7 @@
 				<tr>
           <td><%= f.select("location_id", @search.locations.collect {|p| [p.title, p.id] }, {:include_blank => 'Расположение'}, :class => "search-index-input") %></td>
 					<td>
-						<input type="submit" id="submit-button-hidden" class="hidden" />
-						<span class="search-button">
-              <%= image_tag('search.png', :onclick => "$('#submit-button-hidden').click();", :style => "cursor: pointer;") %> 
-						</span>
+						<span class="search-button"><%= image_submit_tag('search2.png') %></span>
 					</td>
 				</tr>
 				<tr>
