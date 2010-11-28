@@ -2,6 +2,21 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :houses, :only => [:show]
   map.resources :articles, :only => [:show]
 
+  map.root :controller => 'main', :action => 'index'
+  map.connect '', :controller => 'main', :action => 'index'
+  map.connect '/index.:format', :controller => 'main', :action => "index"
+
+  map.about '/about', :controller => "main", :action => "about"
+  map.services '/services', :controller => "main", :action => "services"
+  map.travelling '/travelling', :controller => "main", :action => "travelling"
+  map.catalog '/catalog', :controller => "main", :action => "catalog"
+  map.contacts '/contacts', :controller => "main", :action => "contacts"
+  map.send_contacts '/send_contacts', :controller => "main", :action => "send_contacts", :conditions => {:method => :post}
+  map.send_phone_contacts '/send_phone_contacts', :controller => "main", :action => "send_phone_contacts", :conditions => {:method => :post}
+  map.search '/search', :controller => "main", :action => "search"
+  map.export_rss '/export.:format', :controller => "houses", :action => "export"
+  map.feed '/feed.:format', :controller => "main", :action => "feed"
+ 
   map.namespace :admin do |admin|
     admin.root :controller => "admin"
     admin.resources :users, :members => {:logout => :get, :change_password => :get, :do_change_password => :put} 
@@ -26,21 +41,6 @@ ActionController::Routing::Routes.draw do |map|
     admin.connect ':controller/:action/:id.:format'
   end
 
-  map.root :controller => 'main', :action => 'index'
-  map.connect '', :controller => 'main', :action => 'index'
-  map.connect '/index.:format', :controller => 'main', :action => "index"
-
-  map.about '/about', :controller => "main", :action => "about"
-  map.services '/services', :controller => "main", :action => "services"
-  map.travelling '/travelling', :controller => "main", :action => "travelling"
-  map.catalog '/catalog', :controller => "main", :action => "catalog"
-  map.contacts '/contacts', :controller => "main", :action => "contacts"
-  map.send_contacts '/send_contacts', :controller => "main", :action => "send_contacts", :conditions => {:method => :post}
-  map.send_phone_contacts '/send_phone_contacts', :controller => "main", :action => "send_phone_contacts", :conditions => {:method => :post}
-  map.search '/search', :controller => "main", :action => "search"
-  map.export_rss '/export.:format', :controller => "houses", :action => "export"
-  map.feed '/feed.:format', :controller => "main", :action => "feed"
-  
   map.article '/:name', :controller => "articles", :action => "show"
 
   map.connect ':controller/:action/:id'
