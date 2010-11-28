@@ -8,12 +8,12 @@
 
 <% form_for [:admin, @search] do |f| %>
 
-  <%= javascript_include_tag 'forms', 'delegate' %>
+  <%= javascript_include_tag 'delegate', 'forms' %>
   <script type="text/javascript">
     //<![CDATA[
-      var location='<%= generate_template(f, :locations) %>';
       var price='<%= generate_template(f, :prices) %>';
       var number='<%= generate_template(f, :numbers) %>';
+      var loc='<%= generate_template(f, :locations) %>';
     //]]>
   </script>
 
