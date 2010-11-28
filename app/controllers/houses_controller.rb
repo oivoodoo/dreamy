@@ -2,7 +2,7 @@ require 'fastercsv'
 require 'rubygems'
 require 'sanitize'
 
-class HousesController < AdminController
+class HousesController < Admin::AdminController
   layout "admin"
   uses_tiny_mce(:options => AppConfig.default_mce_options, :only => [:new, :edit])
   skip_before_filter :verify_authenticity_token, :only => [:update_positions, :update_container]
