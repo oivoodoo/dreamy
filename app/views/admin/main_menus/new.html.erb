@@ -1,9 +1,9 @@
 <% content_for :top_menu do %>
-  <%= link_to "Добавить", new_main_menu_path %><br />
-  <%= link_to "Назад", main_menus_path %>
+  <%= link_to "Добавить", new_admin_main_menu_path %><br />
+  <%= link_to "Назад", admin_main_menus_path %>
 <% end %>
 
-<% form_for(@main_menu) do |f| %>
+<% form_for [:admin, @main_menu] do |f| %>
   <%= f.error_messages %>
 
   <p>

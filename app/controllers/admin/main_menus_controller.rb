@@ -48,7 +48,7 @@ class Admin::MainMenusController < Admin::AdminController
     respond_to do |format|
       if @main_menu.save
         flash[:notice] = 'MainMenu was successfully created.'
-        format.html { redirect_to(@main_menu) }
+        format.html { redirect_to [:admin, @main_menu] }
         format.xml  { render :xml => @main_menu, :status => :created, :location => @main_menu }
       else
         format.html { render :action => "new" }
@@ -65,7 +65,7 @@ class Admin::MainMenusController < Admin::AdminController
     respond_to do |format|
       if @main_menu.update_attributes(params[:main_menu])
         flash[:notice] = 'MainMenu was successfully updated.'
-        format.html { redirect_to(@main_menu) }
+        format.html { redirect_to [:admin, @main_menu] }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -81,7 +81,7 @@ class Admin::MainMenusController < Admin::AdminController
     @main_menu.destroy
 
     respond_to do |format|
-      format.html { redirect_to(main_menus_url) }
+      format.html { redirect_to(admin_main_menus_url) }
       format.xml  { head :ok }
     end
   end

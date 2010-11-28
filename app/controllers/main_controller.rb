@@ -6,7 +6,7 @@ class MainController < ApplicationController
     if params[:query]
       @query = Query.new(params[:query])
       get_houses(HouseType.all.collect(&:name))
-      render :controller => "main", :action => :search
+      render :action => :search
     else
       @current_menu = 0
       @query = Query.new
