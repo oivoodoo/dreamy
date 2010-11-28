@@ -59,7 +59,6 @@ hr {color: #fff;background: transparent;margin: 0 0 0.5em 0;padding: 0 0 0.5em 0
 .bottom-text p {font-size: 12px;padding: 20px;padding-top: 10px;font-family: Georgia, Verdana, Helvetica, Arial, sans-serif;} 
 
 #banner-image {margin-top: 33px;}
-.prices {padding: 0px 25px;}
 #footer div {color:#DEDEDE !important;font-style: italic;font-size: 14px !important;}
 #footer div a {font-size: 14px !important;}
 .footer-right { margin-right: 15px !important; }
@@ -111,7 +110,7 @@ body {background-color: #FFF;font-family: Georgia, Verdana, Helvetica, Arial, sa
 /* pagination */
 .pagination {text-align:center;margin-bottom:10px;}
 .pagination .current {padding: 2px; background-color:#e7e8e2;}
-#facebook-like {padding-left: 25px;}
+#facebook-like {margin: 10px 0px; height:30px;}
 .pagination .disabled {color: #9698a1;}
 .pagination span.disabled.prev_page {padding-right: 2px;}
 .pagination span.disabled.next_page {padding-left: 2px;}
