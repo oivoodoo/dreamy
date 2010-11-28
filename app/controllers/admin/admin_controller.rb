@@ -2,15 +2,14 @@ module Admin ; end
 
 class Admin::AdminController < ApplicationController
   before_filter :authenticate, :except => %w(login new_session)
+  before_filter :find_search
   
   layout "admin"
 
   def index
-    @search = Search.first
   end
 
   def login 
-
   end
 
   def new_session
@@ -28,5 +27,9 @@ class Admin::AdminController < ApplicationController
    if session[:user_id].nil?
      redirect_to :controller => "admin", :action => "login" 
    end
+  end
+
+  def find_search
+    @search = Search.first
   end
 end
