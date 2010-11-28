@@ -70,7 +70,7 @@ module ApplicationHelper
     out
   end
 
-  def add_link(title, model)
-    link_to title, "##{model}", :class => "add_nested_item", :rel => model.pluralize
+  def add_link(title, model, rel = model.pluralize)
+    link_to title, "##{model}", :class => "add_nested_item", :rel => rel
   end
 end

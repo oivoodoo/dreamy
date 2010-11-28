@@ -18,13 +18,13 @@
   </script>
 
 	<h2>Расположение</h2>
-  <div id="locations">
+  <div id="loc">
     <% f.fields_for :locations do |form| %>
       <%= render :partial => "location", :locals => {:f => form} %>
     <% end %>
   </div>
   <p>
-    <%= add_link("Добавить расположение", "location") %>
+    <%= add_link("Добавить расположение", "loc", "loc") %>
   </p>
 
 	<h2>Цены</h2>

@@ -102,15 +102,11 @@ class HousesController < Admin::AdminController
     @house = House.new(params[:house])
     @house.house_container_id = HouseContainer.first.id
 
-    respond_to do |format|
-      if @house.save
-        flash[:notice] = 'House was successfully created.'
-        format.html { redirect_to houses_path }
-        format.xml  { render :xml => @house, :status => :created, :location => @house }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @house.errors, :status => :unprocessable_entity }
-      end
+    if @house.save
+      flash[:notice] = 'House was successfully created.'
+      redirect_to houses_path
+    else
+      render :action => "new"
     end
   end
 
@@ -121,15 +117,11 @@ class HousesController < Admin::AdminController
   def update
     @house = House.find(params[:id])
 
-    respond_to do |format|
-      if @house.update_attributes(params[:house])
-        flash[:notice] = 'House was successfully updated.'
-        format.html { redirect_to houses_path }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @house.errors, :status => :unprocessable_entity }
-      end
+    if @house.update_attributes(params[:house])
+      flash[:notice] = 'House was successfully updated.'
+      redirect_to houses_path
+    else
+      render :action => "edit"
     end
   end
 
@@ -150,16 +142,11 @@ class HousesController < Admin::AdminController
     render :partial => "editable_house", :collection => @houses, :locals => {:house_type => params[:house_type]}
   end
 
-  # DELETE /houses/1
-  # DELETE /houses/1.xml
   def destroy
     @house = House.find(params[:id])
     @house.destroy
 
-    respond_to do |format|
-      format.html { redirect_to(houses_url) }
-      format.xml  { head :ok }
-    end
+    redirect_to(houses_url) }
   end
 end
 
