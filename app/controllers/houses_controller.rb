@@ -146,7 +146,7 @@ class HousesController < Admin::AdminController
     @house = House.find(params[:id])
     @house.destroy
 
-    redirect_to(houses_url) }
+    redirect_to(houses_url)
   end
 end
 
