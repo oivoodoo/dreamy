@@ -11,6 +11,9 @@
       <span class="forselect search-select">
         <%= f.select("number_id", @search.numbers.collect {|p| [p.title, p.id] }, {:include_blank => 'Количество комнат'}, :class => "search-catalog-input") %>
       </span>
+      <span class="forselect search-select">
+        <%= f.select("beach_id", @search.beaches.collect {|p| [p.title, p.id] }, {:include_blank => 'Пляж'}, :class => "search-catalog-input") %>
+      </span>
       <span class="search-top-button">
         <input type="submit" id="submit-button-hidden" class="hidden" />
         <span>
