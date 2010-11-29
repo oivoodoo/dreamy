@@ -18,6 +18,6 @@
 
   #content {width: 100%;margin-bottom: 20px;} 
   #content #content-column-1 {float: left;width:600px;}
-  #content #content-column-2 {float: right;width:330px;margin-left:10px;} 
+  #content #content-column-2 {float: right;width:360px;margin-left:10px;} 
   .clearer {clear: both;font-size:1px;height:1px;}
 }

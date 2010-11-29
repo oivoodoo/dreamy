@@ -9,7 +9,7 @@ ul {margin:0;padding:0;list-style-type:disk;margin-bottom:20px;}
 ul li {color: #1187FF;margin:0;padding:0;padding-bottom:5px;}
 h1, h2, h3, h4, h5, h6 {font-family: 'Trebuchet MS', Verdana, Helvetica, Arial, sans-serif; font-weight: bold; color: #666; margin: 0 0 0.25em 0;}
 h1 {font-size: 26px;font-style: italic;color: #1187ff}
-h2, h2 a { font-size: 20px; color: #474747; font-style: italic; font-weight: normal;}
+h2, h2 a { font-size: 18px; color: #474747; font-weight: normal;}
 h3 {font-size:18px;color:#929292;font-weight:normal;letter-spacing:1px;}
 h4 {font-weight: normal;}
 p {font-family: Georgia, Verdana, Helvetica, Arial, sans-serif;font-size: 14px;line-height: 1.3em;}
@@ -47,7 +47,7 @@ hr {color: #fff;background: transparent;margin: 0 0 0.5em 0;padding: 0 0 0.5em 0
 .no-border {border: 0;}
 .inner-small-image {margin-bottom: 0px;}
 .left-button, .right-button {position:relative;top:-46px;height: 0px;cursor: pointer;z-index: 1000;height: 1px;width: 1px;}
-.right-button {left:314px;} 
+.right-button {left:344px;} 
 .left-button {left:-15px;} 
 .row-selected {background-color: #f6f6f6;}
 
@@ -118,7 +118,7 @@ body {background-color: #FFF;font-family: Georgia, Verdana, Helvetica, Arial, sa
 
 /* end */
 
-#image-container {width: 320px; height: 230px;}
+#image-container {width: 350px; height: 260px;}
 
 #header .search {float:left;}
 #header .search input[type='text'] {width:100px;height: 14px;font-size:10px;padding:1px;float:left;border: 1px solid #ebe4e4;text-align:right;color:#464646;font-style:italic;margin-right:2px;}

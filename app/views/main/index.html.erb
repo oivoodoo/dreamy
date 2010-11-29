@@ -29,11 +29,11 @@
           <div id="image-container">
             <center>
               <% if not @main_photo.nil? then %>
-                <%= image_tag @main_photo.photo.url(:medium), :width => "300px" %>
+                <%= image_tag @main_photo.photo.url(:medium), :width => "330px" %>
               <% end %>
-              <br />
-              <h2><%= house_title_link(@house) unless @house.nil? %></h2>
             </center>
+            <br />
+            <h2><%= house_title_link(@house) unless @house.nil? %></h2>
           </div>
         <% end %>
       </div>

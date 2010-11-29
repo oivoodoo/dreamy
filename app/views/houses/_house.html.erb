@@ -24,7 +24,7 @@
 						reload_big_image();
 					 }
 				 });
-				$(".carousel").attr("style", $(".carousel").attr("style") + ";width: 320px !important;");
+				$(".carousel").attr("style", $(".carousel").attr("style") + ";width: 350px !important;");
 				reload_big_image();
 				reload_small_image();
 			<% end %>
@@ -75,7 +75,7 @@
 			<% for photo in house.photos %>
 				if (index == <%= i %>)
 				{
-					getContainer().innerHTML = "<center><img src=\'<%= image_path(photo.photo.url(:medium)) %>\' lowsrc=\'<%= image_path('big_missing.jpg') %>\' width='300px;'/></'enter>";
+					getContainer().innerHTML = "<center><img src=\'<%= image_path(photo.photo.url(:medium)) %>\' lowsrc=\'<%= image_path('big_missing.jpg') %>\' width='330px;'/></'enter>";
 					$('#image<%= @house.photos[i].id %>').parent().attr("style", "float: left; height:78px; width:96px;");
 				}
 			<% i += 1 %>
@@ -125,7 +125,7 @@
       <% shadow_frame do %>
         <div id="image-container">
           <center>
-            <img src="<%= house.photos[0].photo.url(:medium) %>" width="300px;">
+            <img src="<%= house.photos[0].photo.url(:medium) %>" width="330px;">
           </center>
         </div>
       <% end %>
