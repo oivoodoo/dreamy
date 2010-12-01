@@ -130,6 +130,7 @@ body {background-color: #FFF;font-family: Georgia, Verdana, Helvetica, Arial, sa
 #header #header-right {width: 320px;float:right;}
 #header .lang {text-align:right;position:relative;top:15px;}
 #header-content {float:left;width:430px;}
+#header-content p {margin: 0; padding: 0;}
 .notification {color:red;padding:10px 0px;}
 #items li {margin-left: 1.5em;}
 #content ul {margin: 0px 0px 1em 1em;}
