@@ -27,4 +27,9 @@
   {
    	margin-bottom: 0px;
   }
+
+  #nav_main ul li a
+  {
+    padding-right:0px;
+  }
 }
