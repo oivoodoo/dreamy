@@ -19,21 +19,21 @@
                     <%= link_to all_link, :controller => :main, :action => action_name %>
                 </p>
                 <div class="clearer"></div>
-                <% iterator = 0 %>
-                <% for i in 0...@houses.size %>
-                    <% if @houses[i].photos.size > 0 %>
-                        <% value = render_big_image(@houses[i], iterator, house_type) %>
-                        <% if value != -1 %>
-                            <%= value %>
-                            <% iterator += 1 %>
-                        <% end %>
-                    <% end %>
-                <% end %>
+                  <% iterator = 0 %>
+                  <% for i in 0...@houses.size %>
+                      <% if @houses[i].photos.size > 0 %>
+                          <% value = render_big_image(@houses[i], iterator, house_type) %>
+                          <% if value != -1 %>
+                              <%= value %>
+                              <% iterator += 1 %>
+                          <% end %>
+                      <% end %>
+                  <% end %>
+                  <div class="clearer">&nbsp;</div>
             <% else %>
                 <p>По вашему запросу ничего не найдено</p>
             <% end %>
         </div>
-        <div class="clearer">&nbsp;</div>
         <%= will_paginate @houses, :update => "content" %>
         <div><%= page.bottom %></div>
     </div>
