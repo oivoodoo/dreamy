@@ -9,7 +9,7 @@
     border-top: 1px #333 solid;
     border-bottom: 1px #333 solid;
     line-height: 0;
-	background-color: white;
+    background-color: white;
   }
 
   #nav_main ul {display: inline; float: left; margin: 0; padding: 0;}
@@ -21,9 +21,9 @@
     list-style-type: none;
     margin: 0;
     padding: 0;
-	letter-spacing: 0px;
-	font-weight: lighter;
-	font-family:Georgia,Verdana,Helvetica,Arial,sans-serif;
+    letter-spacing: 0px;
+    font-weight: lighter;
+    font-family:Georgia,Verdana,Helvetica,Arial,sans-serif;
   }
 
   #nav_main ul li a,
@@ -31,13 +31,18 @@
     background: transparent;
     color: #929292;
     display: block;
-    font-size: 0.8em;
+    font-size: 1.2em;
     font-weight: lighter;
     margin: 0;
     text-decoration: none;
     width: auto;
-    padding-right: 10px;
+    padding-left: 10px;
+    text-transform:uppercase;
+    padding-right:20px;
+    padding-bottom: 5px;
   }
+  
+  #nav_main ul li.last a {padding-right: 0px;}
 
   #nav_main ul li a:focus,
   #nav_main ul li a:hover,

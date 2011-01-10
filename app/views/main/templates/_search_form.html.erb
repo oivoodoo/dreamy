@@ -1,25 +1,23 @@
 <% form_for :query, @query, :html => {:id => "main_form", :method => :post} do |f| %>
-	<p>Поиск по каталогу</p>
+	<p>Выберете свой дом</p>
 	<div class="search-controls">
 		<table>
 			<tbody>
 				<tr>
           <td><%= f.select("price_id", @search.prices.collect {|p| [p.title, p.id] }, {:include_blank => 'Cтоимость за день'}, :class => "search-index-input") %></td>
-					<td>&nbsp;</td>
-				</tr>
-				<tr>
           <td><%= f.select("location_id", @search.locations.collect {|p| [p.title, p.id] }, {:include_blank => 'Расположение'}, :class => "search-index-input") %></td>
-					<td>
-						<span class="search-button"><%= image_submit_tag('search2.png') %></span>
-					</td>
 				</tr>
 				<tr>
           <td><%= f.select("number_id", @search.numbers.collect {|p| [p.title, p.id] }, {:include_blank => 'Количество спален'}, :class => "search-index-input") %></td>
-					<td>&nbsp;</td>
-				</tr>
-        <tr>
           <td><%= f.select("beach_id", @search.beaches.collect {|p| [p.title, p.id] }, {:include_blank => 'Пляж'}, :class => "search-index-input") %></td>
-					<td>&nbsp;</td>
+				</tr>
+				<tr class="command_line">
+					<td class="first">
+            <%= image_submit_tag('search2.png') %>
+					</td>
+          <td class="second">
+            <%= link_to "все предложения", :controller => :main, :action => :catalog %>
+          </td>
 				</tr>
 			</tbody>
 		</table>

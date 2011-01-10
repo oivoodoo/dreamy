@@ -1,5 +1,17 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
+  def navigation_class(position, size)
+    if position == 0  
+      return "first"
+    elsif position == size - 1
+      return "last"
+    end
+  end
+
+  def big_image_index(index)
+    return "last" if index % 2 != 0
+  end
+
   def navigation_item(current, preff, &block)
     if current == preff then
         content_tag :li, yield, :id => "current"

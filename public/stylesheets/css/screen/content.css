@@ -67,7 +67,7 @@ hr {color: #fff;background: transparent;margin: 0 0 0.5em 0;padding: 0 0 0.5em 0
 .services-text {color: #999999 !important;font-size: 18px !important;font-weight: normal;}
 .pre-search {margin-bottom: 20px;margin-top: 10px;}
 .pre-search h2 a {color:#474747;font-size:20px;font-style:italic;font-weight:normal;}
-.search-form p {font-style: italic;margin-bottom: 8px;} 
+.search-form p {color:#2f2f30;font-size:16px; margin-bottom: 10px;}
 .search-button {margin-left: 20px;} 
 .search-select {float: left;margin-right: 15px;} 
 .search-comment {font-size: 11px !important;color:#999999 !important;position:relative;top: -5px;} 
@@ -75,10 +75,10 @@ hr {color: #fff;background: transparent;margin: 0 0 0.5em 0;padding: 0 0 0.5em 0
 .search-result-bottom {margin-top: 10px;margin-left: 10px;}
 .search-top-button {margin-right: 10px;} 
 .search-catalog-input {width: 204px;}
-select.search-index-input {width: 190px; color:#666;}
+select.search-index-input {width: 236px; color:#666;}
 .search-top-button {position: relative;top: 0px;}
 .search-image-bottom {margin-bottom: 15px;}
-.search-form {margin-bottom:10px;}
+.search-form {margin-bottom:20px;}
 
 .main-header {margin-bottom: 10px;font-style: italic;}
 .line{border-bottom: 1px solid #999999;padding-bottom: 20px;padding-left: 10px;margin-bottom: 20px;margin-top: -10px;}
@@ -98,7 +98,6 @@ select.search-index-input {width: 190px; color:#666;}
 
 #main input[type='text'] {margin-bottom: 2px;}
 .line-content {background:#FFFFFF none repeat scroll 0;padding: 0px 20px;clear:both;}
-.custom-line {border-bottom:1px solid #999999;height:1px;margin-bottom:10px;}
 .banner-link {margin-right: -2px;}
 #catalog_body_container {margin-bottom: 10px;}
 
@@ -118,21 +117,34 @@ body {background-color: #FFF;font-family: Georgia, Verdana, Helvetica, Arial, sa
 
 /* end */
 
-#image-container {width: 350px; height: 260px;}
+#image-container {width: 227px;}
+#image-container h2 a {font-size: 14px;}
 
-#header .search {float:left;}
+#header .search {float:right;}
 #header .search input[type='text'] {width:100px;height: 14px;font-size:10px;padding:1px;float:left;border: 1px solid #ebe4e4;text-align:right;color:#464646;font-style:italic;margin-right:2px;}
 #header .search input[type='image'] {width:21px;height:18px;float:left;}
 #header .search h4 img {margin-right:3px;padding-top:6px;}
 #header #logo {float:left;margin-right:10px;}
 #header .info {float:right;text-align:right;}
+#header .info h3 {color:#ff3300;}
 #header .info a {text-decoration:underline;font-weight:normal;font-size:14px;}
-#header #header-right {width: 320px;float:right;}
+#header #header-right {width: 180px;float:right;}
 #header .lang {text-align:right;position:relative;top:15px;}
-#header-content {float:left;width:430px;}
+#header-content {float:left;width:400px;}
 #header-content p {margin: 0; padding: 0;}
 .notification {color:red;padding:10px 0px;}
 #items li {margin-left: 1.5em;}
 #content ul {margin: 0px 0px 1em 1em;}
+#content {margin-top: 10px;}
 #search-container {margin-bottom: 20px;}
+.search-controls td:first-child {padding-right: 25px;}
+.search-controls > table {width: 100%;}
+.command_line {margin-top: 15px;}
+.command_line td {padding-top: 15px;}
+.command_line .first {text-align: left;}
+.command_line .second {text-align: right;}
+.command_line .second a {text-decoration:underline; color: #2F2F30;}
+.command_line .second a:hover, .command_line .second a:focus {color: #007EFF;}
+.navigation_line {background:url(images/line.png) repeat-x; width: 100%; height: 7px;}
+.right-bottom-content {margin-top: 20px;}
 }

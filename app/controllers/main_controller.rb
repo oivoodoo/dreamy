@@ -10,8 +10,7 @@ class MainController < ApplicationController
     else
       @current_menu = 0
       @query = Query.new
-      @house = House.find_main
-      @main_photo = House.find_main_photo
+      @mains = House.main_houses(:include => "photos")
       @main_page = MainPage.find(:first)
       @title = @main_page.title
     end

@@ -4,12 +4,14 @@
 
 <% content_for :head do %>
   <script type="text/javascript">
-    $(document).ready(function(){
-      $.preload('#image-container img', {
-      placeholder:"<%= image_path('big_missing.gif') %>",
-      notFound:"<%= image_path('big_missing.gif') %>"
-      })
-    });
+    ;(function($){
+      $(function(){
+        $.preload('#image-container img', {
+        placeholder:"<%= image_path('big_missing.gif') %>",
+        notFound:"<%= image_path('big_missing.gif') %>"
+        })
+      });
+    })(jQuery);
 </script>
 <% end %>
 
@@ -23,28 +25,25 @@
     </div>
   </div>
   <div id="content-column-2">
-    <% if not @main_photo.nil? then %>
-      <div id="big-image">
-        <% shadow_frame do %>
-          <div id="image-container">
-            <center>
-              <% if not @main_photo.nil? then %>
-                <%= image_tag @main_photo.photo.url(:medium), :width => "330px" %>
-              <% end %>
-            </center>
-            <br />
-            <h2><%= house_title_link(@house) unless @house.nil? %></h2>
-          </div>
-        <% end %>
-      </div>
-      <div class="clearer">&nbsp;</div>
-    <% end %>
-    <div class="pre-search">
-      <%= link_to "все предложения", :controller => :main, :action => :catalog %>
-    </div>
     <div class="search-form">
       <%= render :partial => 'main/templates/search_form' %>				
     </div>
+    <% @mains.each_with_index do |h,i| %>
+      <div id="big-image" class="big_image <%= big_image_index(i) %>">
+        <% shadow_frame do %>
+          <div id="image-container">
+            <center>
+              <% if not h.photos.first.nil? then %>
+                <%= image_tag h.photos.first.photo.url(:medium), :width => "223px" %>
+              <% end %>
+            </center>
+            <br />
+            <h2><%= house_title_link(h) unless h.nil? %></h2>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+    <div class="clearer">&nbsp;</div>
     <div class="right-bottom-content">
       <%= @main_page.right_bottom_content %>
     </div>

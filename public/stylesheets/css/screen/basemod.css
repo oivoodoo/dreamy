@@ -1,23 +1,28 @@
 @charset "UTF-8";
 @media all {
+  body {margin: 0px;}
   #page_margins {min-width:740px;max-width: 80em;margin: 0 auto;border: 0px #889 solid;}
-  #page {width: 1000px;}
+  #page {width: 1000px;padding-right:33px;padding-left:33px;background:url(images/background.jpg) repeat;}
   #page_margins {text-align: left;max-width:980px;min-width:980px;}
 
-  #header {color: #000;padding: 25px 10px 0px;margin-bottom: 10px;} 
-  #main { background: #fff; padding: 10px 10px;} 
+  #header {color: #000;padding: 25px 10px 0px;margin-bottom: 30px;} 
+  #main { background: #fff; padding: 10px 10px;clear:both;} 
   #footer { color: #666; padding: 15px; padding-top: 40px; padding-bottom: 15px; }
+
+  #banner-image {padding: 3px;}
 
   #nav * {border: 0px none !important}
   #nav ul {margin-left: 20px;}
   #nav_main ul {margin-left: 10px}
   #nav_main ul li {line-height: 1.2em} 
-  #nav_main ul li a, #nav_main ul li strong {color: #666;font-weight: normal;padding: 0.5em 0.8em 0.5em 0.8em;} 
+  #nav_main ul li a, #nav_main ul li strong {color: #666;font-weight: normal;} 
   #nav_main ul li a:focus, #nav_main ul li a:hover, #nav_main ul li a:active {background: #182E7A;color: #fff}
   #nav_main ul li#current {background: transparent} 
 
   #content {width: 100%;margin-bottom: 20px;} 
-  #content #content-column-1 {float: left;width:600px;}
-  #content #content-column-2 {float: right;width:360px;margin-left:10px;} 
+  #content #content-column-1 {width:460px; margin-right:20px;}
+  #content #content-column-2, #content #content-column-1 {float:left;} 
+  #content .big_image {float:left;margin-right: 22px;}
+  #content .big_image.last {margin-right: 0px;}
   .clearer {clear: both;font-size:1px;height:1px;}
 }

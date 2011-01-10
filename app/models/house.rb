@@ -15,6 +15,7 @@ class House < ActiveRecord::Base
   named_scope :for_rent, lambda {|scope| {:conditions => ["(houses.house_type = 'rent' or houses.house_type = 'all')"]}}
   named_scope :for_sale, lambda {|scope| {:conditions => ["(houses.house_type = 'sale' or houses.house_type = 'all')"]}}
   named_scope :for_all, lambda {|scope| {:conditions => ["(houses.house_type = 'all')"]}}
+  named_scope :main_houses, lambda {|scope| {:limit => 2, :conditions => ["(houses.is_main = ?)", true]}}
 
   accepts_nested_attributes_for :photos, :allow_destroy => true
   accepts_nested_attributes_for :assets, :allow_destroy => true
@@ -49,19 +50,6 @@ class House < ActiveRecord::Base
             ascend_by_group_position.
             paginate(:page => page)
    end
-
-    def find_main
-      House.find(:first, :order => "updated_at DESC", :conditions => ["is_main = ?", "1"])
-    end
-
-    def find_main_photo
-      house = self.find_main
-      if not house.nil? and not house.number_photo.nil? then
-        house.photos[house.number_photo]
-      elsif not house.nil? then
-        house.photos[0]
-      end
-    end
 
     def is_rent?(param)
       "rent" == param or "all" == param
