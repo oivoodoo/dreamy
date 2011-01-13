@@ -79,6 +79,7 @@ select.search-index-input {width: 236px; color:#666;}
 .search-top-button {position: relative;top: 0px;}
 .search-image-bottom {margin-bottom: 15px;}
 .search-form {margin-bottom:20px;}
+#main_form > p {margin-top: 10px;}
 
 .main-header {margin-bottom: 10px;font-style: italic;}
 .line{border-bottom: 1px solid #999999;padding-bottom: 20px;padding-left: 10px;margin-bottom: 20px;margin-top: -10px;}
@@ -101,7 +102,7 @@ select.search-index-input {width: 236px; color:#666;}
 .banner-link {margin-right: -2px;}
 #catalog_body_container {margin-bottom: 10px;}
 
-body {background-color: #FFF;font-family: Georgia, Verdana, Helvetica, Arial, sans-serif;font-size: 75.00%;color: #444;}
+body {background:url(images/background.jpg) repeat;font-family: Georgia, Verdana, Helvetica, Arial, sans-serif;font-size: 75.00%;color: #444;}
 .sub-content-1 h1 a {font-size: 16px;}
 
 /* begin new styles */

@@ -2,7 +2,7 @@
 @media all {
   body {margin: 0px;}
   #page_margins {min-width:740px;max-width: 80em;margin: 0 auto;border: 0px #889 solid;}
-  #page {width: 1000px;padding-right:33px;padding-left:33px;background:url(images/background.jpg) repeat;}
+  #page {width: 1000px;padding-right:10px;padding-left:10px;background-color:#FFF;}
   #page_margins {text-align: left;max-width:980px;min-width:980px;}
 
   #header {color: #000;padding: 25px 10px 0px;margin-bottom: 30px;} 

@@ -36,7 +36,11 @@ module ApplicationHelper
   end
   
   def house_title(house)
-    "<b style=\"color: red; margin-right: 10px;\">#{house.special_offer}</b>#{house.title}"
+    unless house.special_offer.blank?
+      return "<b style=\"color: red; margin-right: 10px;\">#{house.special_offer}</b>#{house.title}"
+    else
+      return house.title
+    end
   end
   
   def house_title_link(house)
