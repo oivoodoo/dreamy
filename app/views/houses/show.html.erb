@@ -1,9 +1,5 @@
-<% content_for :meta do %>
-  <%= render :partial => 'templates/meta', :object => @house %>
+<% unless @house.page_title.blank? %>
+	<% @page_title = @house.page_title %>
 <% end %>
 
-<% @page_title = @house.page_title %>
-
-<div id="content">
-  <%= render :partial => "house", :object => @house, :locals => { :menu => @menus }%>
-</div>
+<%= render :partial => "show_house", :object => @house %>

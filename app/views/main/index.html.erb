@@ -3,50 +3,59 @@
 <% end %>
 
 <% content_for :head do %>
-  <script type="text/javascript">
-    ;(function($){
-      $(function(){
-        $.preload('#image-container img', {
-        placeholder:"<%= image_path('big_missing.gif') %>",
-        notFound:"<%= image_path('big_missing.gif') %>"
-        })
-      });
-    })(jQuery);
-</script>
+	<%= javascript_include_tag 'jquery' %>
+	<%= javascript_include_tag 'jquery.preload' %>
+	
+	<script type="text/javascript">
+		function initialize()
+		{
+			$.preload('#image-container img', {
+				placeholder:"<%= image_path('big_missing.gif') %>",
+				notFound:"<%= image_path('big_missing.gif') %>"
+			});
+		}
+		$(document).ready(initialize);
+	</script>
 <% end %>
 
 <div id="content">
-  <div id="content-column-1">
-    <div class="sub-content-1 no-border">
-      <h1><%= h @main_page.title %></h1>
-      <div>
-        <%= @main_page.body %>
-      </div>
-    </div>
-  </div>
-  <div id="content-column-2">
-    <div class="search-form">
-      <%= render :partial => 'main/templates/search_form' %>				
-    </div>
-    <% @mains.each_with_index do |h,i| %>
-      <div id="big-image" class="big_image <%= big_image_index(i) %>">
-        <% shadow_frame do %>
-          <div id="image-container">
-            <center>
-              <% if not h.photos.first.nil? then %>
-                <%= image_tag h.photos.first.photo.url(:medium), :width => "223px" %>
-              <% end %>
-            </center>
-            <br />
-            <h2><%= house_title_link(h) unless h.nil? %></h2>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
-    <div class="clearer">&nbsp;</div>
-    <div class="right-bottom-content">
-      <%= @main_page.right_bottom_content %>
-    </div>
-  </div>
-  <div class="clearer">&nbsp;</div>
+	<div id="content-column-1">
+		<div class="sub-content-1 no-border">
+			<h1><%= h @main_page.title %></h1>
+			<div>
+				<%= @main_page.body %>
+			</div>
+		</div>
+	</div>
+	<div id="content-column-2">
+		<% if not @main_photo.nil? then %>
+		<div id="big-image">
+			<% shadow_frame do %>
+				<div id="image-container" style="width: 405px; height: 307px;">
+					<center>
+						<% if not @main_photo.nil? then %>
+							<%= image_tag @main_photo.photo.url(:medium) %>
+						<% end %>
+					</center>
+				</div>
+			<% end %>
+		</div>
+		<div class="clearer" style="height: 1px;">&nbsp</div>
+		<% end %>
+		<div class="pre-search">
+			<% if not @house.nil? then %>
+				<h2>
+					<%= house_title_link(@house) %>
+				</h2>
+			<% end %>
+			<%= link_to "все предложения", :controller => :main, :action => :catalog %>
+		</div>
+		<div class="search-form">
+			<%= render :partial => 'main/templates/search_form' %>				
+		</div>
+		<div class="right-bottom-content">
+		  <%= @main_page.right_bottom_content %>
+		</div>
+	</div>
+	<div class="clearer">&nbsp;</div>
 </div>

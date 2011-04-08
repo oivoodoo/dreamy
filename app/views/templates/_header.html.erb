@@ -1,27 +1,17 @@
 <div id="header">
-  <div id="logo">
-    <%= link_to "#{image_tag("new_logo.png")}", root_path %>
-  </div>
-  <div id="header-content">
-    <%= Header.first.content %>
-  </div>
-  <div id="header-right">
-    <div>
-      <div class="info"> 
-        <h3>+7 66 843 085889</h3>
-      </div>
-      <div class="search">
-        <% form_tag '/search' do %>
-          <%= text_field_tag :query, "поиск", {:onclick => "if ($(this).attr('value') == 'поиск') $(this).attr('value', '');"} %>
-          <%= image_submit_tag 'search3.png' %>
-          <div class="clearer">&nbsp;</div>
-        <% end %>
-      </div>
-   </div>
-    <div class="clearer"></div>
-    <div class="lang">
-      <h4><%= link_to "#{image_tag('english.gif')}English", "/" %></h4>
-    </div>
-  </div>
-  <div class="clearer">&nbsp;</div>
+    <% unless @header.content.blank? %>
+        <div>
+            <%= @header.content %>
+        </div>                
+    <% else %>
+        <div>
+            <div style="float: right;">
+              <%= image_tag("office.png") %>
+            </div>
+            <div style="float: left;">
+                      <%= link_to "#{image_tag("dreamy.png", :class => "header-title")}", :controller => :main, :action => :index %>
+            </div>
+            <div class="clearer">&nbsp;</div>
+        </div>
+    <% end %>
 </div>

@@ -1,8 +1,13 @@
+# Filters added to this controller apply to all controllers in the application.
+# Likewise, all the methods added will be available for all controllers.
+
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
-  
+  protect_from_forgery  :secret => '65468990f1f6b46db26e44a55135998c'
   filter_parameter_logging :password
-  before_filter :render_menu, :get_header, :get_footer
+  before_filter :render_menu
+  before_filter :get_header
+  before_filter :get_footer
   skip_after_filter :add_google_analytics_code
 
   attr_reader :current_user

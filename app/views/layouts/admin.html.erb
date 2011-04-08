@@ -23,16 +23,12 @@
           </div>
           <div id='cms_text'>
            Здравствуйте, admin<br>
-           <%= link_to 'Сменить пароль', :controller => "admin/users", :action => "change_password" %><br>
+           <%= link_to 'Сменить пароль', :controller => :users, :action => :change_password %><br>
            <%= link_to "Выход", :controller => :users, :action => :logout %>
           </div>
          </td>
          <td id='white' width=100%>
-           <div id='cms_text'>
-             <div id="container">
-               <%= yield :layout %>
-             </div>
-            </div>
+            <div id='cms_text'><%= yield :layout %></div>
          </td>
      </tr>
       <tr>

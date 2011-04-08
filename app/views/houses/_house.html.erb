@@ -1,5 +1,7 @@
 <% content_for :head do %>
-  <%= javascript_include_tag 'jquery', 'jquery.preload', 'jcarousellite', :cache => "catalog" %>
+	<%= javascript_include_tag 'jquery' %>
+	<%= javascript_include_tag 'jquery.preload' %>
+	<%= javascript_include_tag 'jcarousellite' %>
 
 	<script type="text/javascript">
 		function intitializePage()
@@ -24,7 +26,7 @@
 						reload_big_image();
 					 }
 				 });
-				$(".carousel").attr("style", $(".carousel").attr("style") + ";width: 350px !important;");
+				$(".carousel").attr("style", $(".carousel").attr("style") + ";width: 405px !important;");
 				reload_big_image();
 				reload_small_image();
 			<% end %>
@@ -55,7 +57,7 @@
 
 		function reload_big_image()
 		{
-			$.preload('#image-container img', {
+			$.preload('#big-image-container img', {
 				placeholder:"<%= image_path('big_missing.gif') %>",
 				notFound:"<%= image_path('big_missing.gif') %>"
 			});
@@ -75,7 +77,7 @@
 			<% for photo in house.photos %>
 				if (index == <%= i %>)
 				{
-					getContainer().innerHTML = "<center><img src=\'<%= image_path(photo.photo.url(:medium)) %>\' lowsrc=\'<%= image_path('big_missing.jpg') %>\' width='330px;'/></'enter>";
+					getContainer().innerHTML = "<center><img src=\'<%= image_path(photo.photo.url(:medium)) %>\' lowsrc=\'<%= image_path('big_missing.jpg') %>\' /></center>";
 					$('#image<%= @house.photos[i].id %>').parent().attr("style", "float: left; height:78px; width:96px;");
 				}
 			<% i += 1 %>
@@ -84,7 +86,7 @@
 
 		function getContainer()
 		{
-			return document.getElementById('image-container');
+			return document.getElementById('big-image-container');
 		}
 		$(document).ready(intitializePage);
 	</script>
@@ -120,34 +122,28 @@
 	</div>
 </div>
 <div id="content-column-2">
-	<% if house.photos.size > 0 %>
-    <div id="big-image">
-      <% shadow_frame do %>
-        <div id="image-container">
-          <center>
-            <img src="<%= house.photos[0].photo.url(:medium) %>" width="330px;">
-          </center>
-        </div>
-      <% end %>
-    </div>
-    <div id="small-big-image">
-      <% shadow_frame do %>
-        <div class="inner-small-image">
-          <div class="carousel">
-               <ul id="items">
-               </ul>
-           </div>
-        </div>
-        <div class="left-button prev"><%= image_tag("left-image-button.png") %></div>
-        <div class="right-button next"><%= image_tag("right-image-button.png") %></div>
-      <% end %>
-    </div>
-    <div class="clearer"></div>
-    <div id="facebook-like">
-      <!-- begin facebook api -->
-<iframe src="http://www.facebook.com/plugins/like.php?href=<%= request.url %>&amp;layout=standard&amp;show_faces=true&amp;width=450&amp;action=like&amp;colorscheme=light&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:80px;" allowTransparency="true"></iframe>
-      <!-- end facebook api -->
-    </div>
+	<% if house.photos.size > 0 then %>
+	<div id="big-image">
+		<% shadow_frame do %>
+			<div id="big-image-container" style="width: 405px; height: 307px;">
+				<center>
+					<img src="<%= house.photos[0].photo.url(:medium) %>">
+				</center>
+			</div>
+		<% end %>
+	</div>
+	<div id="small-big-image">
+		<% shadow_frame do %>
+			<div class="inner-small-image">
+				<div class="carousel">
+			       <ul id="items">
+			       </ul>
+			   </div>
+			</div>
+			<div class="left-button prev"><%= image_tag("left-image-button.png") %></div>
+			<div class="right-button next"><%= image_tag("right-image-button.png") %></div>
+		<% end %>
+	</div>
 	<% end %>
 	<div class="clearer">&nbsp;</div>
 	<div class="prices">

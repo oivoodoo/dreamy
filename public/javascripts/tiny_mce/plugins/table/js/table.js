@@ -9,10 +9,8 @@ function insertTable() {
 	var html = '', capEl, elm;
 	var cellLimit, rowLimit, colLimit;
 
-	tinyMCEPopup.restoreSelection();
-
 	if (!AutoValidator.validate(formObj)) {
-		tinyMCEPopup.alert(inst.getLang('invalid_data'));
+		alert(inst.getLang('invalid_data'));
 		return false;
 	}
 
@@ -24,14 +22,14 @@ function insertTable() {
 	border = formObj.elements['border'].value != "" ? formObj.elements['border'].value  : 0;
 	cellpadding = formObj.elements['cellpadding'].value != "" ? formObj.elements['cellpadding'].value : "";
 	cellspacing = formObj.elements['cellspacing'].value != "" ? formObj.elements['cellspacing'].value : "";
-	align = getSelectValue(formObj, "align");
-	frame = getSelectValue(formObj, "tframe");
-	rules = getSelectValue(formObj, "rules");
+	align = formObj.elements['align'].options[formObj.elements['align'].selectedIndex].value;
+	frame = formObj.elements['frame'].options[formObj.elements['frame'].selectedIndex].value;
+	rules = formObj.elements['rules'].options[formObj.elements['rules'].selectedIndex].value;
 	width = formObj.elements['width'].value;
 	height = formObj.elements['height'].value;
 	bordercolor = formObj.elements['bordercolor'].value;
 	bgcolor = formObj.elements['bgcolor'].value;
-	className = getSelectValue(formObj, "class");
+	className = formObj.elements['class'].options[formObj.elements['class'].selectedIndex].value;
 	id = formObj.elements['id'].value;
 	summary = formObj.elements['summary'].value;
 	style = formObj.elements['style'].value;
@@ -46,13 +44,13 @@ function insertTable() {
 
 	// Validate table size
 	if (colLimit && cols > colLimit) {
-		tinyMCEPopup.alert(inst.getLang('table_dlg.col_limit').replace(/\{\$cols\}/g, colLimit));
+		alert(inst.getLang('table_col_limit', '', true, {cols : colLimit}));
 		return false;
 	} else if (rowLimit && rows > rowLimit) {
-		tinyMCEPopup.alert(inst.getLang('table_dlg.row_limit').replace(/\{\$rows\}/g, rowLimit));
+		alert(inst.getLang('table_row_limit', '', true, {rows : rowLimit}));
 		return false;
 	} else if (cellLimit && cols * rows > cellLimit) {
-		tinyMCEPopup.alert(inst.getLang('table_dlg.cell_limit').replace(/\{\$cells\}/g, cellLimit));
+		alert(inst.getLang('table_cell_limit', '', true, {cells : cellLimit}));
 		return false;
 	}
 
@@ -87,26 +85,13 @@ function insertTable() {
 			elm.insertBefore(capEl, elm.firstChild);
 		}
 
-		if (width && inst.settings.inline_styles) {
-			dom.setStyle(elm, 'width', width);
-			dom.setAttrib(elm, 'width', '');
-		} else {
-			dom.setAttrib(elm, 'width', width, true);
-			dom.setStyle(elm, 'width', '');
-		}
+		dom.setAttrib(elm, 'width', width, true);
 
 		// Remove these since they are not valid XHTML
 		dom.setAttrib(elm, 'borderColor', '');
 		dom.setAttrib(elm, 'bgColor', '');
 		dom.setAttrib(elm, 'background', '');
-
-		if (height && inst.settings.inline_styles) {
-			dom.setStyle(elm, 'height', height);
-			dom.setAttrib(elm, 'height', '');
-		} else {
-			dom.setAttrib(elm, 'height', height, true);
-			dom.setStyle(elm, 'height', '');
- 		}
+		dom.setAttrib(elm, 'height', '');
 
 		if (background != '')
 			elm.style.backgroundImage = "url('" + background + "')";
@@ -151,26 +136,7 @@ function insertTable() {
 	html += makeAttrib('border', border);
 	html += makeAttrib('cellpadding', cellpadding);
 	html += makeAttrib('cellspacing', cellspacing);
-
-	if (width && inst.settings.inline_styles) {
-		if (style)
-			style += '; ';
-
-		// Force px
-		if (/^[0-9\.]+$/.test(width))
-			width += 'px';
-
-		style += 'width: ' + width;
-	} else
-		html += makeAttrib('width', width);
-
-/*	if (height) {
-		if (style)
-			style += '; ';
-
-		style += 'height: ' + height;
-	}*/
-
+	html += makeAttrib('width', width);
 	//html += makeAttrib('height', height);
 	//html += makeAttrib('bordercolor', bordercolor);
 	//html += makeAttrib('bgcolor', bgcolor);
@@ -207,30 +173,7 @@ function insertTable() {
 	html += "</table>";
 
 	inst.execCommand('mceBeginUndoLevel');
-
-	// Move table
-	if (inst.settings.fix_table_elements) {
-		var bm = inst.selection.getBookmark(), patt = '';
-
-		inst.execCommand('mceInsertContent', false, '<br class="_mce_marker" />');
-
-		tinymce.each('h1,h2,h3,h4,h5,h6,p'.split(','), function(n) {
-			if (patt)
-				patt += ',';
-
-			patt += n + ' ._mce_marker';
-		});
-
-		tinymce.each(inst.dom.select(patt), function(n) {
-			inst.dom.split(inst.dom.getParent(n, 'h1,h2,h3,h4,h5,h6,p'), n);
-		});
-
-		dom.setOuterHTML(dom.select('._mce_marker')[0], html);
-
-		inst.selection.moveToBookmark(bm);
-	} else
-		inst.execCommand('mceInsertContent', false, html);
-
+	inst.execCommand('mceInsertContent', false, html);
 	inst.addVisual();
 	inst.execCommand('mceEndUndoLevel');
 
@@ -318,13 +261,12 @@ function init() {
 	}
 
 	addClassesToList('class', "table_styles");
-	TinyMCE_EditableSelects.init();
 
 	// Update form
 	selectByValue(formObj, 'align', align);
-	selectByValue(formObj, 'tframe', frame);
+	selectByValue(formObj, 'frame', frame);
 	selectByValue(formObj, 'rules', rules);
-	selectByValue(formObj, 'class', className, true, true);
+	selectByValue(formObj, 'class', className);
 	formObj.cols.value = cols;
 	formObj.rows.value = rows;
 	formObj.border.value = border;

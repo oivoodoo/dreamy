@@ -3,18 +3,12 @@
 <% end %>
 
 <div id="content">
-  <% if flash[:success] %>
-    <div class="notification">
-      <%= flash[:success] %>
-    </div>
-  <% end %>
-  <h2><%= h @contacts_page.title %></h2>
-  <div id="contacts">
-    <%= render :partial => "contacts" %>
-  </div>
+	<h2><%= h @contacts_page.title %></h2>
+	<div id="contacts">
+	  <%= render :partial => "contacts" %>
+	</div>
   <br />
-  <div>
-    <%= @contacts_page.body %>
-  </div>
+	<div>
+		<%= @contacts_page.body %>
+	</div>
 </div>
-

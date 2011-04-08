@@ -1,5 +1,5 @@
 .contacts_container > legend > span {font-size: 16px;text-align:center;}
-#contacts {width: 600px; margin-top: 20px;}
+#contacts {width: 600px; margin-top: 40px;}
 form.formtastic fieldset ol li.string input {width: 50% !important;}
 form.formtastic fieldset ol li fieldset ol {
 float:left;

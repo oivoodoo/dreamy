@@ -1,17 +1,5 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
-  def navigation_class(position, size)
-    if position == 0  
-      return "first"
-    elsif position == size - 1
-      return "last"
-    end
-  end
-
-  def big_image_index(index)
-    return "last" if index % 2 != 0
-  end
-
   def navigation_item(current, preff, &block)
     if current == preff then
         content_tag :li, yield, :id => "current"
@@ -36,18 +24,14 @@ module ApplicationHelper
   end
   
   def house_title(house)
-    unless house.special_offer.blank?
-      return "<b style=\"color: red; margin-right: 10px;\">#{house.special_offer}</b>#{house.title}"
-    else
-      return house.title
-    end
+    "<b style=\"color: red; margin-right: 10px;\">#{house.special_offer}</b>#{house.title}"
   end
   
   def house_title_link(house)
-    "<a href=\"#{url_for(house_path(:id => house.id))}\">
+    "<a href=\"#{url_for(:controller => :main, :action => :show_house, :id => house.id)}\">
       #{house_title(house)}<span style=\"color: #999999; \">&#187</span></a>"
   end
-  
+
   def google_analytics(code)
      %(
          <script type='text/javascript'>
@@ -86,7 +70,7 @@ module ApplicationHelper
     out
   end
 
-  def add_link(title, model, rel = model.pluralize)
-    link_to title, "##{model}", :class => "add_nested_item", :rel => rel
+  def add_link(title, model)
+    link_to title, "##{model}", :class => "add_nested_item", :rel => model.pluralize
   end
 end

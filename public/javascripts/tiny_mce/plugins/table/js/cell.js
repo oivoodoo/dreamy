@@ -32,8 +32,6 @@ function init() {
 
 	// Setup form
 	addClassesToList('class', 'table_cell_styles');
-	TinyMCE_EditableSelects.init();
-
 	formObj.bordercolor.value = bordercolor;
 	formObj.bgcolor.value = bgcolor;
 	formObj.backgroundimage.value = backgroundimage;
@@ -44,7 +42,7 @@ function init() {
 	formObj.style.value = ed.dom.serializeStyle(st);
 	selectByValue(formObj, 'align', align);
 	selectByValue(formObj, 'valign', valign);
-	selectByValue(formObj, 'class', className, true, true);
+	selectByValue(formObj, 'class', className);
 	selectByValue(formObj, 'celltype', celltype);
 	selectByValue(formObj, 'dir', dir);
 	selectByValue(formObj, 'scope', scope);
@@ -58,13 +56,12 @@ function init() {
 }
 
 function updateAction() {
-	var el, inst = ed, tdElm, trElm, tableElm, formObj = document.forms[0];
-
-	tinyMCEPopup.restoreSelection();
-	el = ed.selection.getNode();
-	tdElm = ed.dom.getParent(el, "td,th");
-	trElm = ed.dom.getParent(el, "tr");
-	tableElm = ed.dom.getParent(el, "table");
+	var el = ed.selection.getNode();
+	var inst = ed;
+	var tdElm = ed.dom.getParent(el, "td,th");
+	var trElm = ed.dom.getParent(el, "tr");
+	var tableElm = ed.dom.getParent(el, "table");
+	var formObj = document.forms[0];
 
 	ed.execCommand('mceBeginUndoLevel');
 
@@ -73,24 +70,14 @@ function updateAction() {
 			var celltype = getSelectValue(formObj, 'celltype');
 			var scope = getSelectValue(formObj, 'scope');
 
-			function doUpdate(s) {
-				if (s) {
-					updateCell(tdElm);
-
-					ed.addVisual();
-					ed.nodeChanged();
-					inst.execCommand('mceEndUndoLevel');
-					tinyMCEPopup.close();
-				}
-			};
-
-			if (ed.getParam("accessibility_warnings", 1)) {
+			if (ed.getParam("accessibility_warnings")) {
 				if (celltype == "th" && scope == "")
-					tinyMCEPopup.confirm(ed.getLang('table_dlg.missing_scope', '', true), doUpdate);
+					var answer = confirm(ed.getLang('table_dlg.missing_scope', '', true));
 				else
-					doUpdate(1);
+					var answer = true;
 
-				return;
+				if (!answer)
+					return;
 			}
 
 			updateCell(tdElm);

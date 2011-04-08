@@ -1,31 +1,21 @@
 class MainController < ApplicationController
   before_filter :prepare_catalog_page, :only => %w(catalog sale_catalog)
-  before_filter :get_search, :only => %w(index catalog sale_catalog)
+  before_filter :get_search, :only => %w(index catalog)
+  before_filter :get_sale_search, :only => %w(sale_catalog)
 
   def index
-    if params[:query]
-      @query = Query.new(params[:query])
-      get_houses(HouseType.all.collect(&:name))
-      render :action => :search
-    else
-      @current_menu = 0
-      @query = Query.new
-      @mains = House.main_houses(:include => "photos")
-      @main_page = MainPage.find(:first)
-      @title = @main_page.title
-    end
-  end
+    @current_menu = 0
 
-  def feed
-    @houses = House.all
+    @query = Query.new
+    @house = House.find_main
+    @main_photo = House.find_main_photo
+    @main_page = MainPage.find(:first)
 
-    respond_to do |format|
-      format.rss  { render :layout => false }
-    end
+    @title = @main_page.title
   end
 
   def contacts
-    @current_menu = 6
+    @current_menu = 5
     @contacts_page = ContactsPage.find(:first)
     @title = @contacts_page.title
   end
@@ -49,41 +39,66 @@ class MainController < ApplicationController
 
   def catalog
     @current_menu = 1
-    get_houses(["rent", "all"])
+    if not params[:query].nil? then
+      @query = Query.new(params[:query])
+      @houses = House.find_by_query(@query, params[:page], "(house_type = 'rent' or house_type = 'all')")
+      session[:query] = params[:query]
+    else
+      if session[:query].nil? 
+      @houses = House.find_all_with_paginate(params[:page], "(house_type = 'rent' or house_type = 'all')")
+      else 
+       @query = Query.new(session[:query])
+       @houses = House.find_by_query(@query, params[:page], "(house_type = 'rent' or house_type = 'all')")
+      end 
+    end
     @title = @catalog_page.title
   end
 
   def sale_catalog
-    @current_menu = 3
-    get_houses(["sale", "all"])
+    if not params[:query].nil? then
+      @query = Query.new(params[:query])
+      @houses = House.find_by_query(@query, params[:page], "(house_type = 'sale' or house_type = 'all')")
+      session[:query] = params[:query]
+    else
+      if session[:query].nil?
+        @houses = House.find_all_with_paginate(params[:page], "(house_type = 'sale' or house_type = 'all')")
+      else
+       @query = Query.new(session[:query])
+       @houses = House.find_by_query(@query, params[:page], "(house_type = 'sale' or house_type = 'all')")
+      end
+    end
     @title = @sale_page.title
   end
- 
+
+  def show_house
+    @house = House.find(params[:id])
+    @menus = HouseMenu.find(:all, :order => "position")
+    @current_menu = 1
+  end
+
+  def show_google
+    @house = House.find(params[:id])
+    @current_menu = 1
+
+    if @house.google_markers.size > 0 then
+      @map = GMap.new("house_map_div")
+      @map.control_init(:large_map => true,:map_type => true)
+      @map.center_zoom_init([@house.google_markers[0].x,@house.google_markers[0].y],12)
+      @map.overlay_init GMarker.new([@house.google_markers[0].x,@house.google_markers[0].y],:title => @house.google_markers[0].title)
+      @map.record_init @map.add_overlay(GMarker.new([@house.google_markers[0].x,@house.google_markers[0].y],:title => @house.google_markers[0].title))
+     end
+  end
+
+  def show_article
+    @article = Article.find(params[:id])
+    @title = @article.title unless @article.title.nil?
+  end
+
   def send_contacts
     contact = Contact.new(params[:contacts])
     contact.save
     OrderMailer.deliver_order_notification(params[:contacts])
-    flash[:success] = "Сообщение успешно отправлено."
     redirect_to :action => "contacts"
-  end
-
-  def phone_contacts
-    @current_menu = 6
-    @contacts_page = PhoneContactsPage.find(:first)
-    @title = @contacts_page.title
-  end
-
-  def send_phone_contacts
-    contact = PhoneContact.new(params[:phone_contacts])
-    contact.save
-    OrderMailer.deliver_phone_contact_notification(params[:phone_contacts])
-    flash[:success] = "Сообщение успешно отправлено."
-    redirect_to :action => "phone_contacts"
-  end
-
-  def search
-    @houses = House.title_like_or_bottom_text_like_or_comment_like_or_sale_bottom_text_like_or_catalog_title_like(params[:query])
-    @articles = Article.title_like_or_body_like(params[:query])
   end
 
   protected
@@ -97,22 +112,8 @@ class MainController < ApplicationController
       @search = Search.first
     end
 
-    def get_houses(house_types)
-      if not params[:query].nil?
-        @query = Query.new(params[:query])
-        @houses = House.find_by_query(@query, params[:page], house_types)
-      else
-        if params[:query].nil?
-          @houses = House.house_type_name_equals(house_types).
-                          is_visible_eq(true).
-                          ascend_by_group_position.
-                          paginate(:page => params[:page])
-        else
-          @query = Query.new(params[:query])
-          @houses = House.find_by_query(@query, params[:page], house_types)
-        end
-      end
+    def get_sale_search
+      @sale_search = Search.first
     end
-
 end
 

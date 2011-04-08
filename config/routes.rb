@@ -13,9 +13,11 @@ ActionController::Routing::Routes.draw do |map|
   map.contacts '/contacts', :controller => "main", :action => "contacts"
   map.send_contacts '/send_contacts', :controller => "main", :action => "send_contacts", :conditions => {:method => :post}
   map.send_phone_contacts '/send_phone_contacts', :controller => "main", :action => "send_phone_contacts", :conditions => {:method => :post}
-  map.search '/search', :controller => "main", :action => "search"
+  map.search '/search', :controller => "search", :action => "index"
   map.export_rss '/export.:format', :controller => "houses", :action => "export"
   map.feed '/feed.:format', :controller => "main", :action => "feed"
+  map.show_house '/main/show_house/:id', :controller => "main", :action => "show_house"
+  map.show_article '/main/show_article/:id', :controller => "main", :action => "show_article"
  
   map.namespace :admin do |admin|
     admin.root :controller => "admin"

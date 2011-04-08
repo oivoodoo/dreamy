@@ -8,10 +8,8 @@ var AnchorDialog = {
 		elm = ed.dom.getParent(ed.selection.getNode(), 'A,IMG');
 		v = ed.dom.getAttrib(elm, 'name');
 
-		if (v) {
-			this.action = 'update';
+		if (v)
 			f.anchorName.value = v;
-		}
 
 		f.insert.value = ed.getLang(elm ? 'update' : 'insert');
 	},
@@ -20,9 +18,7 @@ var AnchorDialog = {
 		var ed = this.editor;
 		
 		tinyMCEPopup.restoreSelection();
-
-		if (this.action != 'update')
-			ed.selection.collapse(1);
+		ed.selection.collapse(1);
 
 		// Webkit acts weird if empty inline element is inserted so we need to use a image instead
 		if (tinymce.isWebKit)

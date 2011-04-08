@@ -1,23 +1,30 @@
-<% form_for :query, @query, :html => {:id => "main_form", :method => :post} do |f| %>
-	<p>Выберете свой дом</p>
+<% form_for :query, @query, :url => { :action => :catalog }, :id => "main_form" do |f| %>
+	<p>Поиск по каталогу</p>
 	<div class="search-controls">
 		<table>
 			<tbody>
 				<tr>
-          <td><%= f.select("price_id", @search.prices.collect {|p| [p.title, p.id] }, {:include_blank => 'Cтоимость за день'}, :class => "search-index-input") %></td>
-          <td><%= f.select("location_id", @search.locations.collect {|p| [p.title, p.id] }, {:include_blank => 'Расположение'}, :class => "search-index-input") %></td>
+					<td>
+						<%= render_search_control_div(f, @search.prices, "cost", 'Cтоимость за день', "search-index-input")%>
+					</td>
+					<td>&nbsp</td>
 				</tr>
 				<tr>
-          <td><%= f.select("number_id", @search.numbers.collect {|p| [p.title, p.id] }, {:include_blank => 'Количество спален'}, :class => "search-index-input") %></td>
-          <td><%= f.select("beach_id", @search.beaches.collect {|p| [p.title, p.id] }, {:include_blank => 'Пляж'}, :class => "search-index-input") %></td>
-				</tr>
-				<tr class="command_line">
-					<td class="first">
-            <%= image_submit_tag('search2.png') %>
+					<td>
+						<%= render_search_control_div_title(f, @search.locations, "location", 'Расположение', "search-index-input")%>
 					</td>
-          <td class="second">
-            <%= link_to "все предложения", :controller => :main, :action => :catalog %>
-          </td>
+					<td>
+						<input type="submit" id="submit-button-hidden" class="hidden" />
+						<span class="search-button">
+								<img src="<%= image_path('search.png') %>" onclick="var form = document.getElementById('submit-button-hidden'); form.click();" style="cursor: pointer;"/> 
+						</span>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<%= render_search_control_div_title(f, @search.numbers, "number", 'Количество спален', "search-index-input")%>
+					</td>
+					<td>&nbsp</td>
 				</tr>
 			</tbody>
 		</table>

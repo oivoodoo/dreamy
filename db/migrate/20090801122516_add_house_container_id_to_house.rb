@@ -6,7 +6,6 @@ require "#{RAILS_ROOT}/app/models/google_marker.rb"
 
 class AddHouseContainerIdToHouse < ActiveRecord::Migration
   def self.up
-    add_column :houses, :group_position, :integer
     add_column :houses, :house_container_id, :integer
 
     container = HouseContainer.create
@@ -19,6 +18,5 @@ class AddHouseContainerIdToHouse < ActiveRecord::Migration
 
   def self.down
     remove_column :houses, :house_container_id
-    remove_column :houses, :group_position
   end
 end

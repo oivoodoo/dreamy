@@ -1,4 +1,4 @@
-class Admin::ContactsController < Admin::AdminController
+class Admin::ContactsController < AdminController
   def index
     @contacts = Contact.paginate(:page => params[:page])
   end
