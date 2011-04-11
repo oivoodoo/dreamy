@@ -36,6 +36,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :phone_contacts, :only => [:index, :destroy]
   map.resources :assets, :only => [:new, :create, :index, :show]
   map.resources :houses, :member => {:export => :get, :rent => :get, :sale => :get}, :collection => {:update_positions => :post, :update_container => :post}
+  map.tiny_mce_photos '/tiny_mce_photos', :controller => "tiny_mce_photos", :action => "index"
+  map.tiny_mce_photos_create '/tiny_mce_photos', :controller => "tiny_mce_photos", :action => "create", :conditions => {:collection => :post}
   map.index_rent '/h/index_rent', :controller => "houses", :action => "index_rent"
   map.index_sale '/h/index_sale', :controller => "houses", :action => "index_sale"
   

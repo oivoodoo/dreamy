@@ -1,7 +1,5 @@
 class TinyMcePhotosController < ApplicationController
   before_filter :login_required
-  
-  #because the TinyMCE image uploader can't provide the auth token
   skip_before_filter :verify_authenticity_token, :only => :create 
 
   def index
@@ -18,12 +16,12 @@ class TinyMcePhotosController < ApplicationController
     @photo.user = @user
 
     if @photo.save
-      GC.start        
+      GC.start
       responds_to_parent do
         render :update do |page|
           page << "upload_image_callback('#{@photo.public_filename()}', '#{@photo.display_name}', '#{@photo.id}');"
         end
-      end                
+      end
     else
       responds_to_parent do
         render :update do |page|

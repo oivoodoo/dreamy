@@ -2,9 +2,9 @@ class SearchesController < AdminController
   layout "admin"
 
   def edit
-    @search = Search.find(:first)
+    @search = Search.first
   end
-  
+
   def update
     @search = Search.find(params[:id])
 
