@@ -1,10 +1,8 @@
 class HousesController < AdminController
-  layout("admin", conditions = {}, auto = false)
+  layout "admin"
   uses_tiny_mce(:options => AppConfig.default_mce_options, :only => [:new, :edit])
   skip_before_filter :verify_authenticity_token, :only => [:update_positions, :update_container]
 
-  # GET /houses
-  # GET /houses.xml
   def index
   end
 
@@ -16,21 +14,15 @@ class HousesController < AdminController
     @houses_sale = House.all(:conditions => ["house_type = 'sale' or house_type = 'all'"]).paginate :page => params[:page]
   end
 
-  # GET /houses/1
-  # GET /houses/1.xml
   def show
     @house = House.find(params[:id])
     @menus = HouseMenu.find(:all)
   end
 
-  # GET /houses/new
-  # GET /houses/new.xml
   def new
     @house = House.new
   end
 
-  # POST /houses
-  # POST /houses.xml
   def create
     @house = House.new(params[:house])
     @house.house_container_id = HouseContainer.first.id

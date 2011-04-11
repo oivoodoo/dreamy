@@ -1,7 +1,4 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :houses, :only => [:show]
-  map.resources :articles, :only => [:show]
-
   map.root :controller => 'main', :action => 'index'
   map.connect '', :controller => 'main', :action => 'index'
   map.connect '/index.:format', :controller => 'main', :action => "index"
