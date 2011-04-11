@@ -20,29 +20,28 @@ ActionController::Routing::Routes.draw do |map|
   map.show_article '/main/show_article/:id', :controller => "main", :action => "show_article"
  
   map.namespace :admin do |admin|
-    admin.root :controller => "admin"
-    admin.resources :users, :members => {:logout => :get, :change_password => :get, :do_change_password => :put} 
-    admin.resources :session
-    admin.new_session '/admin/new_session', :controller => "admin", :action => "new_session"
-    admin.login '/login', :controller => "admin", :action => "login"
-    admin.base_page '/base_page', :controller => "base_page", :action => "index"
-    admin.resources :conditions
-    admin.resources :main_menus
-    admin.resources :house_menus
-    admin.resources :searches
-    admin.resources :sale_searches
-    admin.resources :banners
-    admin.resources :articles
     admin.resources :contacts, :only => [:index, :destroy]
-    admin.resources :phone_contacts, :only => [:index, :destroy]
-    admin.resources :assets, :only => [:new, :create, :index, :show]
-    admin.resources :houses, :member => {:export => :get, :rent => :get, :sale => :get}, :collection => {:update_positions => :post, :update_container => :post}
-    admin.index_rent '/h/index_rent', :controller => "houses", :action => "index_rent"
-    admin.index_sale '/h/index_sale', :controller => "houses", :action => "index_sale"
-    admin.connect ':controller/:action/:id'
-    admin.connect ':controller/:action/:id.:format'
   end
 
+  map.resources :users, :members => {:logout => :get, :change_password => :get, :do_change_password => :put} 
+  map.resources :session
+  map.admin '/admin', :controller => "admin", :action => "index"
+  map.new_session '/admin/new_session', :controller => "admin", :action => "new_session"
+  map.login '/login', :controller => "admin", :action => "login"
+  map.base_page '/base_page', :controller => "base_page", :action => "index"
+  map.resources :conditions
+  map.resources :main_menus
+  map.resources :house_menus
+  map.resources :searches
+  map.resources :sale_searches
+  map.resources :banners
+  map.resources :articles
+  map.resources :phone_contacts, :only => [:index, :destroy]
+  map.resources :assets, :only => [:new, :create, :index, :show]
+  map.resources :houses, :member => {:export => :get, :rent => :get, :sale => :get}, :collection => {:update_positions => :post, :update_container => :post}
+  map.index_rent '/h/index_rent', :controller => "houses", :action => "index_rent"
+  map.index_sale '/h/index_sale', :controller => "houses", :action => "index_sale"
+  
   map.article '/:name', :controller => "articles", :action => "show"
 
   map.connect ':controller/:action/:id'
