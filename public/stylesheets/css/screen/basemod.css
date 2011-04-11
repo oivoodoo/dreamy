@@ -1,7 +1,7 @@
 @charset "UTF-8";
 @media all {
 body {
-    background: #4d87c7 url("images/bg_blue.gif") repeat-x top left fixed;
+    background: #FFFFFF url("images/bg_blue.gif") repeat-x top left fixed;
     padding: 10px 0;
 } #page_margins {
   min-width:   740px;

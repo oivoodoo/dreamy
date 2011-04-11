@@ -156,7 +156,7 @@ a, a:focus, a:hover, a:active {
 }
 a:focus, a:hover, a:active {
   color: #007eff;
-  text-decoration: none;
+  text-decoration: underline;
 } #topnav a {
   color: #999;
   font-weight: normal;

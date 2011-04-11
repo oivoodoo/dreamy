@@ -19,6 +19,9 @@
         <%= render :partial => "templates/header" %>
         <div id="main">
           <%= render :partial => "templates/navigation", :locals => { :current_menu => @current_menu, :main_menus => @main_menus } %>
+
+          <%= yield :search %>
+
           <div class="search">
             <% form_tag '/search' do %>
               <%= text_field_tag :query, "поиск", {:onclick => "if (this.getAttribute('value') == 'поиск') this.setAttribute('value', '');"} %>
